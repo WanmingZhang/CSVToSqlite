@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D4F29A6D2160004478B /* AppDelegate.swift */; };
 		C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D5129A6D2160004478B /* SceneDelegate.swift */; };
-		C7427D5429A6D2160004478B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D5329A6D2160004478B /* ViewController.swift */; };
 		C7427D5729A6D2160004478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7427D5529A6D2160004478B /* Main.storyboard */; };
 		C7427D5929A6D2170004478B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7427D5829A6D2170004478B /* Assets.xcassets */; };
 		C7427D5C29A6D2170004478B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7427D5A29A6D2170004478B /* LaunchScreen.storyboard */; };
 		C7427D6729A6D2170004478B /* PSCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D6629A6D2170004478B /* PSCatalogTests.swift */; };
 		C7427D7129A6D2170004478B /* PSCatalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D7029A6D2170004478B /* PSCatalogUITests.swift */; };
 		C7427D7329A6D2170004478B /* PSCatalogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D7229A6D2170004478B /* PSCatalogUITestsLaunchTests.swift */; };
+		C7427D8129A6D3090004478B /* PSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8029A6D3090004478B /* PSDownloadManager.swift */; };
+		C7427D8529A6E1C20004478B /* PSDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */; };
+		C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8A29A729870004478B /* PSDownloadItem.swift */; };
+		C7427D8D29A745C60004478B /* PSFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8C29A745C60004478B /* PSFileService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,6 @@
 		C7427D4C29A6D2160004478B /* PSCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7427D4F29A6D2160004478B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7427D5129A6D2160004478B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C7427D5329A6D2160004478B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C7427D5629A6D2160004478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C7427D5829A6D2170004478B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7427D5B29A6D2170004478B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +52,10 @@
 		C7427D7029A6D2170004478B /* PSCatalogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCatalogUITests.swift; sourceTree = "<group>"; };
 		C7427D7229A6D2170004478B /* PSCatalogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCatalogUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C7427D7F29A6D2380004478B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C7427D8029A6D3090004478B /* PSDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDownloadManager.swift; sourceTree = "<group>"; };
+		C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDownloadViewController.swift; sourceTree = "<group>"; };
+		C7427D8A29A729870004478B /* PSDownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDownloadItem.swift; sourceTree = "<group>"; };
+		C7427D8C29A745C60004478B /* PSFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +109,14 @@
 			children = (
 				C7427D4F29A6D2160004478B /* AppDelegate.swift */,
 				C7427D5129A6D2160004478B /* SceneDelegate.swift */,
-				C7427D5329A6D2160004478B /* ViewController.swift */,
 				C7427D5529A6D2160004478B /* Main.storyboard */,
 				C7427D5829A6D2170004478B /* Assets.xcassets */,
 				C7427D5A29A6D2170004478B /* LaunchScreen.storyboard */,
 				C7427D5D29A6D2170004478B /* Info.plist */,
+				C7427D8029A6D3090004478B /* PSDownloadManager.swift */,
+				C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */,
+				C7427D8A29A729870004478B /* PSDownloadItem.swift */,
+				C7427D8C29A745C60004478B /* PSFileService.swift */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -260,9 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7427D5429A6D2160004478B /* ViewController.swift in Sources */,
+				C7427D8D29A745C60004478B /* PSFileService.swift in Sources */,
 				C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */,
+				C7427D8529A6E1C20004478B /* PSDownloadViewController.swift in Sources */,
+				C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */,
 				C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */,
+				C7427D8129A6D3090004478B /* PSDownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
