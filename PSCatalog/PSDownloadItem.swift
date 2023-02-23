@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// a work item that represents a  single download task, with progress tracking, completion handling, and  directory for saving the file.
 class PSDownloadItem: NSObject {
 
     var completionBlock: PSDownloadManager.DownloadCompletionHandler
