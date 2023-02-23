@@ -50,7 +50,6 @@ class PSDownloadManager: NSObject, ObservableObject {
         
         downloadTask = urlSession.downloadTask(with: request)
         
-        
         let downloadItem = PSDownloadItem(downloadTask: downloadTask,
                                           progressClosure: progressClosure,
                                         completionBlock: completionBlock,
@@ -84,10 +83,10 @@ class PSDownloadManager: NSObject, ObservableObject {
 
 extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        guard totalBytesExpectedToWrite > 0 else {
-            debugPrint("Could not calculate progress as totalBytesExpectedToWrite is less than 0")
-            return;
-        }
+//        guard totalBytesExpectedToWrite > 0 else {
+//            debugPrint("Could not calculate progress as totalBytesExpectedToWrite is less than 0")
+//            return;
+//        }
         if let downloadItem = self.ongoingDownloads[(downloadTask.originalRequest?.url?.absoluteString)!],
             let progressClosure = downloadItem.progressClosure {
             let progress : Float = Float(downloadTask.progress.fractionCompleted)
@@ -126,8 +125,10 @@ extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
             let didSucceed = fileMovingResult.0
             let error = fileMovingResult.1
             let finalFileUrl = fileMovingResult.2
-
+            let progressClosure = downloadItem.progressClosure
+            
             DispatchQueue.main.async {
+                progressClosure?(1.00)
                 (didSucceed ? downloadItem.completionBlock(nil,finalFileUrl) : downloadItem.completionBlock(error,nil))
             }
         }
