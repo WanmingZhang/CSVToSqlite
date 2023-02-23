@@ -23,14 +23,7 @@ class PSDownloadViewController: UIViewController {
         navigationItem.title = "Download Catalog"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(startDownload))
         setupView()
-        deleteFileFromDiskForDemo()
-    }
-    
-    // for demo purpose, delete file from disk the first time we load the view
-    func deleteFileFromDiskForDemo() {
-        let fileService = PSFileService()
-        let deleteResult = fileService.deleteFile(from: Constants.directoryName, withName: Constants.fileName)
-        print("delete file for demo purposes: \(deleteResult.0)")
+        
     }
     
     func setupView() {
@@ -45,7 +38,7 @@ class PSDownloadViewController: UIViewController {
         progressLabel.text = "0.0 %"
         guard let url = URL(string: Constants.catalogfileURL) else { return }
         let request = URLRequest(url: url)
-        urlLabel.text = request.url?.absoluteString ?? "-"
+        urlLabel.text = "Download from: \(request.url?.absoluteString ?? "-")"
         let downloadKey = self.downloadManager.downloadFile(withRequest: request,
                                                             inDirectory: Constants.directoryName,
                                                             withName: Constants.fileName,
@@ -58,7 +51,7 @@ class PSDownloadViewController: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 print("Error is \(error.localizedDescription)")
-                self.finalUrlLabel.text = error.localizedDescription
+                self.handleDownloadCompletionError(error, url)
             } else {
                 if let url = url {
                     print("Downloaded file's url is \(url.path)")
@@ -66,8 +59,40 @@ class PSDownloadViewController: UIViewController {
                 }
             }
         }
-        
         print("The key is \(downloadKey!)")
     }
-
+    
+    func handleDownloadCompletionError(_ error : Error, _ fileUrl: URL?) {
+        let errorCode = (error as NSError).code
+        if errorCode == 516 { //"File exists"
+            presentAlert()
+        }
+        self.finalUrlLabel.text = error.localizedDescription
+    }
+    
+    func presentAlert() {
+        presentAlertWithTitle(title: "", message: "A file with the same name already exists", options: "Delete", "Cancel") { [weak self] (option) in
+            print("option: \(option)")
+            switch(option) {
+                case "Delete":
+                self?.deleteAndRedownload()
+                    print("Delete button pressed")
+                    break
+                case "Cancel":
+                    print("Cancel button pressed")
+                    break
+                default:
+                    break
+            }
+        }
+    }
+    
+    func deleteAndRedownload() {
+        let fileService = PSFileService()
+        let deleteResult = fileService.deleteFile(from: Constants.directoryName, withName: Constants.fileName)
+        print("delete file for demo purposes: \(deleteResult.0)")
+        if deleteResult.0 == true {
+            self.startDownload()
+        }
+    }
 }

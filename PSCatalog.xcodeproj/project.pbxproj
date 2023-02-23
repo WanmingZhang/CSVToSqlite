@@ -20,6 +20,7 @@
 		C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8A29A729870004478B /* PSDownloadItem.swift */; };
 		C7427D8D29A745C60004478B /* PSFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8C29A745C60004478B /* PSFileService.swift */; };
 		C7427D8F29A764850004478B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8E29A764850004478B /* Constants.swift */; };
+		C7427D9129A82B660004478B /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9029A82B660004478B /* UIViewController+Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		C7427D8A29A729870004478B /* PSDownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDownloadItem.swift; sourceTree = "<group>"; };
 		C7427D8C29A745C60004478B /* PSFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileService.swift; sourceTree = "<group>"; };
 		C7427D8E29A764850004478B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C7427D9029A82B660004478B /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				C7427D8A29A729870004478B /* PSDownloadItem.swift */,
 				C7427D8C29A745C60004478B /* PSFileService.swift */,
 				C7427D8E29A764850004478B /* Constants.swift */,
+				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				C7427D8F29A764850004478B /* Constants.swift in Sources */,
 				C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */,
 				C7427D8129A6D3090004478B /* PSDownloadManager.swift in Sources */,
+				C7427D9129A82B660004478B /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
