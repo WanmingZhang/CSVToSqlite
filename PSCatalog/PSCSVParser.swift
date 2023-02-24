@@ -8,15 +8,14 @@
 import Foundation
 
 struct PSCSVParser {
-    func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding) -> [PSProduct]? {
-       // Load the CSV file and parse it
+    func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, completion: @escaping (Result<[PSProduct]?, Error>) -> Void) {
         let delimiter = ","
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
-        
-        if let content = try? String(contentsOf: contentsOfURL as URL, encoding: encoding) {
+        // Load the CSV file and parse it
+        do {
+            let content = try String(contentsOf: contentsOfURL as URL, encoding: encoding)
             items = []
             let lines:[String] = content.components(separatedBy: NSCharacterSet.newlines) as [String]
-
             for line in lines {
                 var values:[String] = []
                 if line != "" {
@@ -27,7 +26,6 @@ struct PSCSVParser {
                         var value:NSString?
                         var textScanner:Scanner = Scanner(string: textToScan)
                         while textScanner.string != "" {
-
                             if (textScanner.string as NSString).substring(to: 1) == "\"" {
                                 textScanner.scanLocation += 1
                                 textScanner.scanUpTo("\"", into: &value)
@@ -47,21 +45,22 @@ struct PSCSVParser {
                             }
                             textScanner = Scanner(string: textToScan)
                         }
-
                         // For a line without double quotes, we can simply separate the string
                         // by using the delimiter (e.g. comma)
                     } else  {
                         values = line.components(separatedBy: delimiter)
                     }
-
                     // Put the values into the tuple and add it to the items array
                     //let item = (name: values[0], detail: values[1], price: values[2])
                     let item = PSProduct(productId: values[0], title: values[1], listPrice: Double(values[2]) ?? 0, salesPrice: Double(values[3]) ?? 0, color: values[4], size: values[5])
                     items.append(item)
+                    completion(.success(items))
+                    return
                 }
             }
+        } catch let error {
+            completion(.failure(error))
+            return
         }
-
-        return items
     }
 }

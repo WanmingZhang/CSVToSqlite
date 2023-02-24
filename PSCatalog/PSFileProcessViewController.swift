@@ -21,16 +21,39 @@ class PSFileProcessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Process Catalog"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(startParseFile))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Parse", style: .plain, target: self, action: #selector(startParseFile))
     }
 
     @objc func startParseFile() {
         let parser = PSCSVParser()
         guard let url = fileURL else {return}
-        if let products = parser.parseCSV(contentsOfURL: url as NSURL, encoding: .utf8) {
-            print("there are: \(products.count) products")
+        parser.parseCSV(contentsOfURL: url as NSURL, encoding: .utf8) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let products):
+                    self?.presentAlert()
+                    print("there are: \(products?.count ?? 0) products")
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
-        
+    }
+    
+    func presentAlert() {
+        presentAlertWithTitle(title: "", message: "Ready to load data into database", options: "Start", "Cancel") { [weak self] (option) in
+            print("option: \(option)")
+            switch(option) {
+                case "Start":
+                    print("Start button pressed")
+                    break
+                case "Cancel":
+                    print("Cancel button pressed")
+                    break
+                default:
+                    break
+            }
+        }
     }
 
 
