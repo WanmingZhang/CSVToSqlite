@@ -83,10 +83,10 @@ class PSDownloadManager: NSObject, ObservableObject {
 
 extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-//        guard totalBytesExpectedToWrite > 0 else {
-//            debugPrint("Could not calculate progress as totalBytesExpectedToWrite is less than 0")
-//            return;
-//        }
+        guard totalBytesExpectedToWrite > 0 else {
+            debugPrint("Could not calculate progress as totalBytesExpectedToWrite is less than 0")
+            return;
+        }
         if let downloadItem = self.ongoingDownloads[(downloadTask.originalRequest?.url?.absoluteString)!],
             let progressClosure = downloadItem.progressClosure {
             let progress : Float = Float(downloadTask.progress.fractionCompleted)
@@ -97,7 +97,6 @@ extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
         print("DownLoad progress: \(downloadTask.progress.fractionCompleted)")
     }
 
-    
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         print("Download finished at location: \(location.absoluteString)")
         // The file at location is temporary and will be gone afterwards
@@ -119,9 +118,10 @@ extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
                 })
                 return
             }
+            
             let fileName = downloadItem.fileName ?? downloadTask.response?.suggestedFilename ?? (downloadTask.originalRequest?.url?.lastPathComponent)!
             let directoryName = downloadItem.directoryName
-            let fileMovingResult = fileService.moveFile(fromUrl: location, toDirectory: directoryName, withName: fileName)
+            let fileMovingResult = fileService.writeToDisk(fromUrl: location, toDirectory: directoryName, withName: fileName)
             let didSucceed = fileMovingResult.0
             let error = fileMovingResult.1
             let finalFileUrl = fileMovingResult.2

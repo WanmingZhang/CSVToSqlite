@@ -21,6 +21,9 @@
 		C7427D8D29A745C60004478B /* PSFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8C29A745C60004478B /* PSFileService.swift */; };
 		C7427D8F29A764850004478B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8E29A764850004478B /* Constants.swift */; };
 		C7427D9129A82B660004478B /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9029A82B660004478B /* UIViewController+Alert.swift */; };
+		C7427D9329A835C00004478B /* PSCSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9229A835C00004478B /* PSCSVParser.swift */; };
+		C7427D9529A837AF0004478B /* PSFileProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */; };
+		C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9629A83C8E0004478B /* PSProduct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		C7427D8C29A745C60004478B /* PSFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileService.swift; sourceTree = "<group>"; };
 		C7427D8E29A764850004478B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C7427D9029A82B660004478B /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		C7427D9229A835C00004478B /* PSCSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCSVParser.swift; sourceTree = "<group>"; };
+		C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileProcessViewController.swift; sourceTree = "<group>"; };
+		C7427D9629A83C8E0004478B /* PSProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSProduct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +123,15 @@
 				C7427D5829A6D2170004478B /* Assets.xcassets */,
 				C7427D5A29A6D2170004478B /* LaunchScreen.storyboard */,
 				C7427D5D29A6D2170004478B /* Info.plist */,
+				C7427D9629A83C8E0004478B /* PSProduct.swift */,
 				C7427D8029A6D3090004478B /* PSDownloadManager.swift */,
 				C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */,
 				C7427D8A29A729870004478B /* PSDownloadItem.swift */,
 				C7427D8C29A745C60004478B /* PSFileService.swift */,
 				C7427D8E29A764850004478B /* Constants.swift */,
 				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
+				C7427D9229A835C00004478B /* PSCSVParser.swift */,
+				C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -278,7 +287,10 @@
 				C7427D8D29A745C60004478B /* PSFileService.swift in Sources */,
 				C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */,
 				C7427D8529A6E1C20004478B /* PSDownloadViewController.swift in Sources */,
+				C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */,
+				C7427D9329A835C00004478B /* PSCSVParser.swift in Sources */,
 				C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */,
+				C7427D9529A837AF0004478B /* PSFileProcessViewController.swift in Sources */,
 				C7427D8F29A764850004478B /* Constants.swift in Sources */,
 				C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */,
 				C7427D8129A6D3090004478B /* PSDownloadManager.swift in Sources */,

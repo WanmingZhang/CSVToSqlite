@@ -12,6 +12,7 @@ class PSDownloadViewController: UIViewController {
     
     private var subscriptions: AnyCancellable?
     var downloadManager = PSDownloadManager.shared
+
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
@@ -23,7 +24,6 @@ class PSDownloadViewController: UIViewController {
         navigationItem.title = "Download Catalog"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(startDownload))
         setupView()
-        
     }
     
     func setupView() {
@@ -31,6 +31,7 @@ class PSDownloadViewController: UIViewController {
         finalUrlLabel.text = ""
         progressBar.progress = 0
         progressLabel.text = "0.0 %"
+        processButton.isEnabled = false
     }
     
     @objc func startDownload() {
@@ -51,15 +52,33 @@ class PSDownloadViewController: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 print("Error is \(error.localizedDescription)")
+                self.updateProcessButton()
                 self.handleDownloadCompletionError(error, url)
             } else {
                 if let url = url {
                     print("Downloaded file's url is \(url.path)")
                     self.finalUrlLabel.text = "File saved at: \(url.path)"
+                    self.updateProcessButton()
                 }
             }
         }
-        print("The key is \(downloadKey!)")
+        print("The key is \(downloadKey ?? "")")
+    }
+    
+    func updateProcessButton() {
+        guard let directoryUrl = getFileURL() else { return }
+        
+        guard FileManager.default.fileExists(atPath: directoryUrl.path) else {
+            print("File does not exist")
+            return
+        }
+        processButton.isEnabled = true
+    }
+    
+    func getFileURL() -> URL? {
+        let fileService = PSFileService()
+        let directoryUrl = fileService.getFileDestURL(directory: Constants.directoryName, name: Constants.fileName)
+        return directoryUrl
     }
     
     func handleDownloadCompletionError(_ error : Error, _ fileUrl: URL?) {
@@ -67,6 +86,7 @@ class PSDownloadViewController: UIViewController {
         if errorCode == 516 { //"File exists"
             presentAlert()
         }
+        
         self.finalUrlLabel.text = error.localizedDescription
     }
     
@@ -89,10 +109,23 @@ class PSDownloadViewController: UIViewController {
     
     func deleteAndRedownload() {
         let fileService = PSFileService()
-        let deleteResult = fileService.deleteFile(from: Constants.directoryName, withName: Constants.fileName)
-        print("delete file for demo purposes: \(deleteResult.0)")
+        let deleteResult = fileService.deleteFile(from:Constants.directoryName, withName: Constants.fileName)
+        print("delete file: \(deleteResult.0)")
         if deleteResult.0 == true {
-            self.startDownload()
+            //self.startDownload()
         }
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "showFileProcessView" {
+            if let destination = segue.destination as? PSFileProcessViewController {
+                guard let url = self.getFileURL() else { return }
+                destination.fileURL = url
+            }
+        }
+    }
+    
 }
