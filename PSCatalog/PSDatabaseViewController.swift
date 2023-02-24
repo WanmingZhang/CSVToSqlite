@@ -41,12 +41,12 @@ class PSDatabaseViewController: UIViewController {
             DispatchQueue.main.async {
                 guard progress > 0 else {
                     self.progressBar.progress = 0
-                    self.progressLabel.text = "0.0 %"
+                    self.progressLabel.text = "loading into database: 0.0 % completed"
                     return
                 }
                 let percentage = String(format: "%.1f %", (progress * 100))
                 self.progressBar.setProgress(Float(progress), animated: true)
-                self.progressLabel.text = "\(percentage) % completed"
+                self.progressLabel.text = "loading into database: \(percentage) % completed"
             }
         }
     }

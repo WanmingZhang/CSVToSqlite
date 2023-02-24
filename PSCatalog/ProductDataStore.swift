@@ -98,6 +98,21 @@ class ProductDataStore {
         return products
     }
     // MARK: delete
+    
+    func deleteAll() -> Bool {
+        guard let database = db else {
+            return false
+        }
+        do {
+            let filter = products.filter(self.listPrice >= 0) // always true
+            try database.run(filter.delete())
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
     func delete(color: String) -> Bool {
         guard let database = db else {
             return false

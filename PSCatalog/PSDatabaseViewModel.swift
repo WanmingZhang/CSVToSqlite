@@ -46,27 +46,29 @@ class PSDatabaseViewModel {
         all.removeFirst()
         DispatchQueue.global(qos: .default).async { [weak self] in
             guard let self = self else { return }
-            let first20 = Array(all[0...17])
-            for product in first20 {
+            //let first20 = Array(all[0...17])
+            
+            for product in all {
                 if let row = db.insert(productId: product.productId,
-                                    title: product.title,
-                                    listPrice: product.listPrice,
-                                    salesPrice: product.salesPrice,
-                                    color: product.color,
+                                       title: product.title,
+                                       listPrice: product.listPrice,
+                                       salesPrice: product.salesPrice,
+                                       color: product.color,
                                        size: product.size) {
-                    
-                    print("inserted at \(row)")
+
                     self.progress.value = Float(row) / Float(all.count)
+                    print("inserted at \(row), all = \(all.count), progress: \(self.progress.value)")
                 }
-                
+
             }
-            //            db.delete(color: "White")
-            //            db.delete(color: "Black")
-            let curr = db.getProducts()
-            print("... \(curr.count)...")
-            for p in curr {
-                print("\(p.productId); \(p.title); \(p.listPrice); \(p.salesPrice); \(p.color); \(p.size)")
-            }
+
+//            db.deleteAll()
+//
+//            let curr = db.getProducts()
+//            print("... \(curr.count)...")
+//            for p in curr {
+//                print("\(p.productId); \(p.title); \(p.listPrice); \(p.salesPrice); \(p.color); \(p.size)")
+//            }
         }
         
         
