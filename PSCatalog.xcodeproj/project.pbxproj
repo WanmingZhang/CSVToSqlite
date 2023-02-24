@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E6073986AA29B543A0EFFC1 /* libPods-PSCatalog-PSCatalogUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FBB9FE33D95833A9666958 /* libPods-PSCatalog-PSCatalogUITests.a */; };
+		460BD8F3DC2DFA88CD7A2A86 /* libPods-PSCatalog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B40450353A8290A7C86A60 /* libPods-PSCatalog.a */; };
+		6606550BCD56EB4166154F90 /* libPods-PSCatalogTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8C720D9EEB6EC313A85BAA /* libPods-PSCatalogTests.a */; };
 		C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D4F29A6D2160004478B /* AppDelegate.swift */; };
 		C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D5129A6D2160004478B /* SceneDelegate.swift */; };
 		C7427D5729A6D2160004478B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7427D5529A6D2160004478B /* Main.storyboard */; };
@@ -24,6 +27,7 @@
 		C7427D9329A835C00004478B /* PSCSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9229A835C00004478B /* PSCSVParser.swift */; };
 		C7427D9529A837AF0004478B /* PSFileProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */; };
 		C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9629A83C8E0004478B /* PSProduct.swift */; };
+		C7427D9929A8B83C0004478B /* ProductDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9829A8B83C0004478B /* ProductDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00C465A8745699BA84F2C238 /* Pods-PSCatalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog.debug.xcconfig"; path = "Target Support Files/Pods-PSCatalog/Pods-PSCatalog.debug.xcconfig"; sourceTree = "<group>"; };
+		06B40450353A8290A7C86A60 /* libPods-PSCatalog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PSCatalog.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BA972F874F492C559F016E8 /* Pods-PSCatalog-PSCatalogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog-PSCatalogUITests.debug.xcconfig"; path = "Target Support Files/Pods-PSCatalog-PSCatalogUITests/Pods-PSCatalog-PSCatalogUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		64FD0F20AC42257B4AA39247 /* Pods-PSCatalogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalogTests.debug.xcconfig"; path = "Target Support Files/Pods-PSCatalogTests/Pods-PSCatalogTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2C6070065D54936DDE1F8D6 /* Pods-PSCatalog-PSCatalogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog-PSCatalogUITests.release.xcconfig"; path = "Target Support Files/Pods-PSCatalog-PSCatalogUITests/Pods-PSCatalog-PSCatalogUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BD8C720D9EEB6EC313A85BAA /* libPods-PSCatalogTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PSCatalogTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7427D4C29A6D2160004478B /* PSCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7427D4F29A6D2160004478B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7427D5129A6D2160004478B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +76,10 @@
 		C7427D9229A835C00004478B /* PSCSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCSVParser.swift; sourceTree = "<group>"; };
 		C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileProcessViewController.swift; sourceTree = "<group>"; };
 		C7427D9629A83C8E0004478B /* PSProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSProduct.swift; sourceTree = "<group>"; };
+		C7427D9829A8B83C0004478B /* ProductDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataStore.swift; sourceTree = "<group>"; };
+		D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog.release.xcconfig"; path = "Target Support Files/Pods-PSCatalog/Pods-PSCatalog.release.xcconfig"; sourceTree = "<group>"; };
+		E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalogTests.release.xcconfig"; path = "Target Support Files/Pods-PSCatalogTests/Pods-PSCatalogTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1FBB9FE33D95833A9666958 /* libPods-PSCatalog-PSCatalogUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PSCatalog-PSCatalogUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				460BD8F3DC2DFA88CD7A2A86 /* libPods-PSCatalog.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6606550BCD56EB4166154F90 /* libPods-PSCatalogTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,12 +103,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E6073986AA29B543A0EFFC1 /* libPods-PSCatalog-PSCatalogUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		302819F80AACF12F082B25CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00C465A8745699BA84F2C238 /* Pods-PSCatalog.debug.xcconfig */,
+				D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */,
+				4BA972F874F492C559F016E8 /* Pods-PSCatalog-PSCatalogUITests.debug.xcconfig */,
+				B2C6070065D54936DDE1F8D6 /* Pods-PSCatalog-PSCatalogUITests.release.xcconfig */,
+				64FD0F20AC42257B4AA39247 /* Pods-PSCatalogTests.debug.xcconfig */,
+				E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4F475A5F552F5CB4B75AB023 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06B40450353A8290A7C86A60 /* libPods-PSCatalog.a */,
+				F1FBB9FE33D95833A9666958 /* libPods-PSCatalog-PSCatalogUITests.a */,
+				BD8C720D9EEB6EC313A85BAA /* libPods-PSCatalogTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C7427D4329A6D2150004478B = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +141,8 @@
 				C7427D6529A6D2170004478B /* PSCatalogTests */,
 				C7427D6F29A6D2170004478B /* PSCatalogUITests */,
 				C7427D4D29A6D2160004478B /* Products */,
+				302819F80AACF12F082B25CE /* Pods */,
+				4F475A5F552F5CB4B75AB023 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +174,7 @@
 				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
 				C7427D9229A835C00004478B /* PSCSVParser.swift */,
 				C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */,
+				C7427D9829A8B83C0004478B /* ProductDataStore.swift */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -160,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7427D7629A6D2170004478B /* Build configuration list for PBXNativeTarget "PSCatalog" */;
 			buildPhases = (
+				0CC5D998D55F3B8E8D50E0A1 /* [CP] Check Pods Manifest.lock */,
 				C7427D4829A6D2160004478B /* Sources */,
 				C7427D4929A6D2160004478B /* Frameworks */,
 				C7427D4A29A6D2160004478B /* Resources */,
@@ -177,6 +221,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7427D7929A6D2170004478B /* Build configuration list for PBXNativeTarget "PSCatalogTests" */;
 			buildPhases = (
+				91381B487BBBC8E64FE55A18 /* [CP] Check Pods Manifest.lock */,
 				C7427D5E29A6D2170004478B /* Sources */,
 				C7427D5F29A6D2170004478B /* Frameworks */,
 				C7427D6029A6D2170004478B /* Resources */,
@@ -195,6 +240,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7427D7C29A6D2170004478B /* Build configuration list for PBXNativeTarget "PSCatalogUITests" */;
 			buildPhases = (
+				D3017DEAD184BDE61D7627BF /* [CP] Check Pods Manifest.lock */,
 				C7427D6829A6D2170004478B /* Sources */,
 				C7427D6929A6D2170004478B /* Frameworks */,
 				C7427D6A29A6D2170004478B /* Resources */,
@@ -279,12 +325,82 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CC5D998D55F3B8E8D50E0A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PSCatalog-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91381B487BBBC8E64FE55A18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PSCatalogTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3017DEAD184BDE61D7627BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PSCatalog-PSCatalogUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C7427D4829A6D2160004478B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C7427D8D29A745C60004478B /* PSFileService.swift in Sources */,
+				C7427D9929A8B83C0004478B /* ProductDataStore.swift in Sources */,
 				C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */,
 				C7427D8529A6E1C20004478B /* PSDownloadViewController.swift in Sources */,
 				C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */,
@@ -466,6 +582,7 @@
 		};
 		C7427D7729A6D2170004478B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00C465A8745699BA84F2C238 /* Pods-PSCatalog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -494,6 +611,7 @@
 		};
 		C7427D7829A6D2170004478B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -522,6 +640,7 @@
 		};
 		C7427D7A29A6D2170004478B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64FD0F20AC42257B4AA39247 /* Pods-PSCatalogTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +661,7 @@
 		};
 		C7427D7B29A6D2170004478B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -562,6 +682,7 @@
 		};
 		C7427D7D29A6D2170004478B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BA972F874F492C559F016E8 /* Pods-PSCatalog-PSCatalogUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -580,6 +701,7 @@
 		};
 		C7427D7E29A6D2170004478B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2C6070065D54936DDE1F8D6 /* Pods-PSCatalog-PSCatalogUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

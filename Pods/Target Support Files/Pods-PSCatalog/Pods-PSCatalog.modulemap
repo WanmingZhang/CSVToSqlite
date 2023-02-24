@@ -1,0 +1,6 @@
+module Pods_PSCatalog {
+  umbrella header "Pods-PSCatalog-umbrella.h"
+
+  export *
+  module * { export * }
+}

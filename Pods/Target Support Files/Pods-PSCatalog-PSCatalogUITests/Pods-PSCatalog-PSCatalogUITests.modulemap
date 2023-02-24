@@ -1,0 +1,6 @@
+module Pods_PSCatalog_PSCatalogUITests {
+  umbrella header "Pods-PSCatalog-PSCatalogUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
