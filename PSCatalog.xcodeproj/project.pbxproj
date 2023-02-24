@@ -25,9 +25,11 @@
 		C7427D8F29A764850004478B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D8E29A764850004478B /* Constants.swift */; };
 		C7427D9129A82B660004478B /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9029A82B660004478B /* UIViewController+Alert.swift */; };
 		C7427D9329A835C00004478B /* PSCSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9229A835C00004478B /* PSCSVParser.swift */; };
-		C7427D9529A837AF0004478B /* PSFileProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */; };
+		C7427D9529A837AF0004478B /* PSDatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9429A837AF0004478B /* PSDatabaseViewController.swift */; };
 		C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9629A83C8E0004478B /* PSProduct.swift */; };
 		C7427D9929A8B83C0004478B /* ProductDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9829A8B83C0004478B /* ProductDataStore.swift */; };
+		C7427D9B29A8D0BA0004478B /* PSDatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9A29A8D0BA0004478B /* PSDatabaseViewModel.swift */; };
+		C7427D9D29A8D5210004478B /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427D9C29A8D5210004478B /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,9 +76,11 @@
 		C7427D8E29A764850004478B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C7427D9029A82B660004478B /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		C7427D9229A835C00004478B /* PSCSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCSVParser.swift; sourceTree = "<group>"; };
-		C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileProcessViewController.swift; sourceTree = "<group>"; };
+		C7427D9429A837AF0004478B /* PSDatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabaseViewController.swift; sourceTree = "<group>"; };
 		C7427D9629A83C8E0004478B /* PSProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSProduct.swift; sourceTree = "<group>"; };
 		C7427D9829A8B83C0004478B /* ProductDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataStore.swift; sourceTree = "<group>"; };
+		C7427D9A29A8D0BA0004478B /* PSDatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabaseViewModel.swift; sourceTree = "<group>"; };
+		C7427D9C29A8D5210004478B /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog.release.xcconfig"; path = "Target Support Files/Pods-PSCatalog/Pods-PSCatalog.release.xcconfig"; sourceTree = "<group>"; };
 		E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalogTests.release.xcconfig"; path = "Target Support Files/Pods-PSCatalogTests/Pods-PSCatalogTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1FBB9FE33D95833A9666958 /* libPods-PSCatalog-PSCatalogUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PSCatalog-PSCatalogUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,8 +177,10 @@
 				C7427D8E29A764850004478B /* Constants.swift */,
 				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
 				C7427D9229A835C00004478B /* PSCSVParser.swift */,
-				C7427D9429A837AF0004478B /* PSFileProcessViewController.swift */,
+				C7427D9429A837AF0004478B /* PSDatabaseViewController.swift */,
 				C7427D9829A8B83C0004478B /* ProductDataStore.swift */,
+				C7427D9A29A8D0BA0004478B /* PSDatabaseViewModel.swift */,
+				C7427D9C29A8D5210004478B /* Observable.swift */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -404,10 +410,12 @@
 				C7427D5029A6D2160004478B /* AppDelegate.swift in Sources */,
 				C7427D8529A6E1C20004478B /* PSDownloadViewController.swift in Sources */,
 				C7427D9729A83C8E0004478B /* PSProduct.swift in Sources */,
+				C7427D9B29A8D0BA0004478B /* PSDatabaseViewModel.swift in Sources */,
 				C7427D9329A835C00004478B /* PSCSVParser.swift in Sources */,
 				C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */,
-				C7427D9529A837AF0004478B /* PSFileProcessViewController.swift in Sources */,
+				C7427D9529A837AF0004478B /* PSDatabaseViewController.swift in Sources */,
 				C7427D8F29A764850004478B /* Constants.swift in Sources */,
+				C7427D9D29A8D5210004478B /* Observable.swift in Sources */,
 				C7427D5229A6D2160004478B /* SceneDelegate.swift in Sources */,
 				C7427D8129A6D3090004478B /* PSDownloadManager.swift in Sources */,
 				C7427D9129A82B660004478B /* UIViewController+Alert.swift in Sources */,

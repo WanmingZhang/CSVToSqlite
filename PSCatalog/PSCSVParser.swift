@@ -33,7 +33,6 @@ struct PSCSVParser {
                             } else {
                                 textScanner.scanUpTo(delimiter, into: &value)
                             }
-
                             // Store the value into the values array
                             values.append(value! as String)
 
@@ -51,13 +50,12 @@ struct PSCSVParser {
                         values = line.components(separatedBy: delimiter)
                     }
                     // Put the values into the tuple and add it to the items array
-                    //let item = (name: values[0], detail: values[1], price: values[2])
                     let item = PSProduct(productId: values[0], title: values[1], listPrice: Double(values[2]) ?? 0, salesPrice: Double(values[3]) ?? 0, color: values[4], size: values[5])
                     items.append(item)
-                    completion(.success(items))
-                    return
                 }
             }
+            completion(.success(items))
+            return
         } catch let error {
             completion(.failure(error))
             return

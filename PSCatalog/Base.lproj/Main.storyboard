@@ -94,17 +94,56 @@
             </objects>
             <point key="canvasLocation" x="2832.8244274809158" y="3.5211267605633805"/>
         </scene>
-        <!--File Process View Controller-->
+        <!--Database View Controller-->
         <scene sceneID="MBf-wh-rqo">
             <objects>
-                <viewController id="wlQ-aD-IAa" customClass="PSFileProcessViewController" customModule="PSCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wlQ-aD-IAa" customClass="PSDatabaseViewController" customModule="PSCatalog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MGP-7I-442">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yu4-07-LxK">
+                                <rect key="frame" x="16" y="203" width="361" height="250"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pk3-dZ-TDq">
+                                        <rect key="frame" x="8" y="75" width="345" height="4"/>
+                                    </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MV-SX-rYr">
+                                        <rect key="frame" x="8" y="99" width="345" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ndz-U7-VKz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="6MV-SX-rYr" firstAttribute="leading" secondItem="pk3-dZ-TDq" secondAttribute="leading" id="7WJ-j7-ONy"/>
+                                    <constraint firstAttribute="height" constant="250" id="BIx-xG-kVs"/>
+                                    <constraint firstItem="6MV-SX-rYr" firstAttribute="top" secondItem="pk3-dZ-TDq" secondAttribute="bottom" constant="20" id="EGg-kt-Gke"/>
+                                    <constraint firstItem="pk3-dZ-TDq" firstAttribute="leading" secondItem="yu4-07-LxK" secondAttribute="leading" constant="8" id="IIW-E1-BbJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="NHh-V5-2fC"/>
+                                    <constraint firstAttribute="trailing" secondItem="pk3-dZ-TDq" secondAttribute="trailing" constant="8" id="dKM-3Q-Kku"/>
+                                    <constraint firstItem="6MV-SX-rYr" firstAttribute="trailing" secondItem="pk3-dZ-TDq" secondAttribute="trailing" id="fL2-0k-vl3"/>
+                                    <constraint firstItem="pk3-dZ-TDq" firstAttribute="top" secondItem="yu4-07-LxK" secondAttribute="top" constant="75" id="oIo-LB-5mz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vj6-9D-vXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yu4-07-LxK" firstAttribute="top" secondItem="vj6-9D-vXi" secondAttribute="top" constant="100" id="Xfx-KA-5FU"/>
+                            <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="yu4-07-LxK" secondAttribute="trailing" constant="16" id="dUw-ar-M2I"/>
+                            <constraint firstItem="yu4-07-LxK" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="16" id="ya4-Wt-ttR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cQc-Vh-LeZ"/>
+                    <connections>
+                        <outlet property="progressBar" destination="pk3-dZ-TDq" id="Feo-K6-wZ1"/>
+                        <outlet property="progressLabel" destination="6MV-SX-rYr" id="RAg-7W-sSL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sc-bX-7M2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
