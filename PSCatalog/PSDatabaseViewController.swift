@@ -35,7 +35,7 @@ class PSDatabaseViewController: UIViewController {
     }
     
     func updateSearchButtonState() {
-        let products = viewModel.getProductsFromDB()
+        let products = viewModel.getAllProductsFromDB()
         self.searchButton.isEnabled = products.isEmpty ? false : true
     }
     

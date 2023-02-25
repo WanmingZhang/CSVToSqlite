@@ -9,7 +9,6 @@ import Foundation
 
 class PSDatabaseViewModel {
     var products: Observable<[PSProduct]> = Observable([])
-    var filtered: Observable<[PSProduct]> = Observable([])
     var errorMsg: Observable<String?> = Observable(nil)
     var progress: Observable<Float> = Observable(0)
     var dBLoadingCompletion: Observable<Bool> = Observable(false)
@@ -41,9 +40,9 @@ class PSDatabaseViewModel {
         return directoryUrl
     }
     
-    func getProductsFromDB() -> [PSProduct] {
+    func getAllProductsFromDB() -> [PSProduct] {
         let db = ProductDataStore.shared
-        return db.getProducts()
+        return db.getAllProducts()
     }
     
     func loadDataIntoDB() {
@@ -52,7 +51,7 @@ class PSDatabaseViewModel {
         guard !all.isEmpty else { return }
         all.removeFirst()
         let deletedAll = db.deleteAll()
-        print("Deleted all items \(deletedAll): \(db.getProducts().count)......")
+        print("Deleted all items \(deletedAll): \(db.getAllProducts().count)......")
         let group = DispatchGroup()
         group.enter()
         DispatchQueue.global().async {
@@ -76,10 +75,5 @@ class PSDatabaseViewModel {
             self.dBLoadingCompletion.value = true
             print("Database loading is finished...")
         }
-//        let deletedAll = db.deleteAll()
-//        print("Deleted all items \(deletedAll): \(db.getProducts().count)......")
-        //            for p in curr {
-        //                print("\(p.productId); \(p.title); \(p.listPrice); \(p.salesPrice); \(p.color); \(p.size)")
-        //            }
     }
 }

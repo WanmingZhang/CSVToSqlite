@@ -8,23 +8,33 @@
 import UIKit
 
 class PSSearchViewController: UIViewController {
-
+    let viewModel: PSSearchViewModel
+    
     @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    required init?(coder: NSCoder) {
+        let viewModel = PSSearchViewModel()
+        self.viewModel = viewModel
+        super.init(coder: coder)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.queryDatabase("white")
+        setupBinder()
     }
-    */
+    
+    func setupBinder() {
+        viewModel.filtered.bind {[weak self] filtered in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard self.viewModel.filtered.value.count > 0 else {
+                    return
+                }
+                print("*** filtered result: \(filtered.count)")
+            }
+        }
+    }
+    
 
 }

@@ -82,8 +82,33 @@ class ProductDataStore {
         }
     }
     
-    // MARK: Retrieve
-    func getProducts() -> [PSProduct] {
+    // MARK: query
+    func filterProducts(by searchString: String) -> ([PSProduct]?, Error?) {
+        guard let database = db else { return (nil, nil) }
+        var filtered: [PSProduct] = []
+        let lowercased = searchString.lowercased()
+
+        // SELECT * FROM "products" WHERE ("title" LIKE searchString)
+        let filter = products.filter(title.lowercaseString.like(lowercased) || size.lowercaseString.like(lowercased) || color.lowercaseString.like(lowercased))
+        do {
+            for row in try database.prepare(filter) {
+                let product = PSProduct(productId: row[productId],
+                                        title: row[title],
+                                        listPrice: row[listPrice],
+                                        salesPrice: row[salesPrice],
+                                        color: row[color],
+                                        size: row[size])
+                filtered.append(product)
+            }
+        } catch {
+            print("query database error: \(error.localizedDescription)")
+            return(nil, error)
+        }
+        return (filtered, nil)
+    }
+    
+    // MARK: access
+    func getAllProducts() -> [PSProduct] {
         var products: [PSProduct] = []
         guard let database = db else { return [] }
 
@@ -144,24 +169,7 @@ class ProductDataStore {
             return false
         }
     }
-    
-//    func findProduct(by name: String) -> [PSProduct]? {
-//        //var task: Task = Task(id: taskId, name: "", date: Date(), status: false)
-//        guard let database = db else { return nil }
-//
-//        let filter = self.products.filter()
-//        do {
-//            for t in try database.prepare(filter) {
-//                task.name = t[taskName]
-//                task.date = t[date]
-//                task.status = t[status]
-//            }
-//        } catch {
-//            print(error)
-//        }
-//        return task
-//    }
-    
+
 //    func getTask() {
 //        task = TaskDataStore.shared.findTask(taskId: id)
 //        taskName = task?.name ?? ""
