@@ -22,7 +22,7 @@ class PSDatabaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Process Catalog"
+        navigationItem.title = "Populate Database"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Parse", style: .plain, target: self, action: #selector(parseFile))
         setupBinder()
         configureSearchButton()

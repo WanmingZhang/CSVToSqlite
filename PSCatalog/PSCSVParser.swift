@@ -7,6 +7,8 @@
 
 import Foundation
 
+// helper function to parse CSV files
+
 struct PSCSVParser {
     func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, completion: @escaping (Result<[PSProduct]?, Error>) -> Void) {
         let delimiter = ","

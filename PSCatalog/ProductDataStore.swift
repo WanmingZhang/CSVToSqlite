@@ -108,6 +108,31 @@ class ProductDataStore {
     }
     
     // MARK: access
+    //    let query = users.select(email)           // SELECT "email" FROM "users"
+    //                     .filter(name != nil)     // WHERE "name" IS NOT NULL
+    //                     .order(email.desc, name) // ORDER BY "email" DESC, "name"
+    //                     .limit(5, offset: 1)     // LIMIT 5 OFFSET 1
+        
+    func loadProductsFromDatabase(_ offset: Int, _ limit: Int) -> [PSProduct] {
+        guard let database = db else { return [] }
+        var products: [PSProduct] = []
+        do {
+            let query = self.products.limit(limit, offset: offset)     // LIMIT 20  OFFSET
+            for product in try database.prepare(query) {
+                products.append(PSProduct(productId: product[productId],
+                                          title: product[title],
+                                          listPrice: product[listPrice],
+                                          salesPrice: product[salesPrice],
+                                          color: product[color],
+                                          size: product[size]))
+                print("title: \(product[title]), color: \(product[color]), size: \(product[size])")
+            }
+        } catch {
+            print(error)
+        }
+        return products
+    }
+    
     func getAllProducts() -> [PSProduct] {
         var products: [PSProduct] = []
         guard let database = db else { return [] }

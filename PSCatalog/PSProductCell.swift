@@ -9,6 +9,7 @@ import UIKit
 
 class PSProductCell: UITableViewCell {
 
+    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var size: UILabel!
@@ -16,9 +17,15 @@ class PSProductCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configureBorder()
     }
 
+    func configureBorder() {
+        borderView.layer.borderColor = UIColor.systemGray5.cgColor
+        borderView.layer.borderWidth = 2.0
+        borderView.layer.cornerRadius = 8.0
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
