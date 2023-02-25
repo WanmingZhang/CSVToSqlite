@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQI-43-EeQ">
-                                <rect key="frame" x="24" y="682.66666666666663" width="345" height="20.333333333333371"/>
+                                <rect key="frame" x="24" y="677.66666666666663" width="345" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,10 +58,17 @@
                                     <constraint firstItem="Ga4-SH-ByS" firstAttribute="trailing" secondItem="dpD-me-5O8" secondAttribute="trailing" id="vwR-qz-xyf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpk-pr-l4C">
-                                <rect key="frame" x="24" y="753" width="345" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Process Catalog"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpk-pr-l4C" customClass="PSTintedButton" customModule="PSCatalog" customModuleProvider="target">
+                                <rect key="frame" x="24" y="748" width="345" height="40"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kfr-62-mnf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Process Catalog">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="wlQ-aD-IAa" kind="show" identifier="showFileProcessView" id="aET-XU-zua"/>
                                 </connections>
@@ -130,10 +137,32 @@
                                     <constraint firstItem="pk3-dZ-TDq" firstAttribute="top" secondItem="yu4-07-LxK" secondAttribute="top" constant="75" id="oIo-LB-5mz"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1K-8N-FGS" customClass="PSTintedButton" customModule="PSCatalog" customModuleProvider="target">
+                                <rect key="frame" x="24" y="748" width="345" height="40"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="347-lq-k0i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Search Database">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="Search Database">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="cjN-zJ-2e0" kind="presentation" id="Hbo-BW-vFo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vj6-9D-vXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="v1K-8N-FGS" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="1D0-Gf-dda"/>
+                            <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="v1K-8N-FGS" secondAttribute="trailing" constant="24" id="6l4-Ql-9Ug"/>
+                            <constraint firstItem="vj6-9D-vXi" firstAttribute="bottom" secondItem="v1K-8N-FGS" secondAttribute="bottom" constant="30" id="7O5-xM-ypd"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="top" secondItem="vj6-9D-vXi" secondAttribute="top" constant="100" id="Xfx-KA-5FU"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="yu4-07-LxK" secondAttribute="trailing" constant="16" id="dUw-ar-M2I"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="16" id="ya4-Wt-ttR"/>
@@ -143,11 +172,52 @@
                     <connections>
                         <outlet property="progressBar" destination="pk3-dZ-TDq" id="Feo-K6-wZ1"/>
                         <outlet property="progressLabel" destination="6MV-SX-rYr" id="RAg-7W-sSL"/>
+                        <outlet property="searchButton" destination="v1K-8N-FGS" id="6Z7-7d-oHc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sc-bX-7M2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3627" y="12"/>
+            <point key="canvasLocation" x="3763" y="4"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="cvs-0d-e4d">
+            <objects>
+                <viewController id="cjN-zJ-2e0" customClass="PSSearchViewController" customModule="PSCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2kY-3U-cEN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-TV-feW">
+                                <rect key="frame" x="0.0" y="59" width="393" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PSProductCell" rowHeight="120" id="rU1-gb-Gjc" customClass="PSProductCell" customModule="PSCatalog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rU1-gb-Gjc" id="TqC-ZK-EUv">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fJ1-kg-laJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GF5-TV-feW" firstAttribute="top" secondItem="fJ1-kg-laJ" secondAttribute="top" id="2Rj-Pa-zoJ"/>
+                            <constraint firstItem="fJ1-kg-laJ" firstAttribute="bottom" secondItem="GF5-TV-feW" secondAttribute="bottom" id="dsI-0k-kNa"/>
+                            <constraint firstItem="GF5-TV-feW" firstAttribute="leading" secondItem="fJ1-kg-laJ" secondAttribute="leading" id="eLQ-oo-EA1"/>
+                            <constraint firstItem="fJ1-kg-laJ" firstAttribute="trailing" secondItem="GF5-TV-feW" secondAttribute="trailing" id="zmd-G3-KQn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="GF5-TV-feW" id="mmV-Nh-ubK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hW2-a3-sIE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4647" y="4"/>
         </scene>
         <!--Item-->
         <scene sceneID="SXA-qO-YaY">
@@ -172,6 +242,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

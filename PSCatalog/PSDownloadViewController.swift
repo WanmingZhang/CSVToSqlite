@@ -31,6 +31,7 @@ class PSDownloadViewController: UIViewController {
         finalUrlLabel.text = ""
         progressBar.progress = 0
         progressLabel.text = "0.0 %"
+        processButton.layer.cornerRadius = 8.0
         updateProcessButton()
     }
     

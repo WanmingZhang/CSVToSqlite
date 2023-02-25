@@ -12,6 +12,8 @@ class PSDatabaseViewController: UIViewController {
 
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
+    
     required init?(coder: NSCoder) {
         let viewModel = PSDatabaseViewModel()
         self.viewModel = viewModel
@@ -23,8 +25,20 @@ class PSDatabaseViewController: UIViewController {
         navigationItem.title = "Process Catalog"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Parse", style: .plain, target: self, action: #selector(parseFile))
         setupBinder()
+        configureSearchButton()
     }
 
+    func configureSearchButton() {
+        searchButton.isEnabled = false
+        searchButton.layer.cornerRadius = 8.0
+        updateSearchButtonState()
+    }
+    
+    func updateSearchButtonState() {
+        let products = viewModel.getProductsFromDB()
+        self.searchButton.isEnabled = products.isEmpty ? false : true
+    }
+    
     // binding of view and view model
     func setupBinder() {
         viewModel.products.bind {[weak self] (_) in
@@ -47,6 +61,15 @@ class PSDatabaseViewController: UIViewController {
                 let percentage = String(format: "%.1f %", (progress * 100))
                 self.progressBar.setProgress(Float(progress), animated: true)
                 self.progressLabel.text = "loading into database: \(percentage) % completed"
+            }
+        }
+        
+        viewModel.dBLoadingCompletion.bind { [weak self] completed in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if completed == true {
+                    self.searchButton.isEnabled = true
+                }
             }
         }
     }

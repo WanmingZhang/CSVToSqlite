@@ -9,8 +9,10 @@ import Foundation
 
 class PSDatabaseViewModel {
     var products: Observable<[PSProduct]> = Observable([])
+    var filtered: Observable<[PSProduct]> = Observable([])
     var errorMsg: Observable<String?> = Observable(nil)
     var progress: Observable<Float> = Observable(0)
+    var dBLoadingCompletion: Observable<Bool> = Observable(false)
     
     func parseFile() {
         let parser = PSCSVParser()
@@ -39,39 +41,45 @@ class PSDatabaseViewModel {
         return directoryUrl
     }
     
+    func getProductsFromDB() -> [PSProduct] {
+        let db = ProductDataStore.shared
+        return db.getProducts()
+    }
+    
     func loadDataIntoDB() {
         let db = ProductDataStore.shared
         var all = self.products.value
         guard !all.isEmpty else { return }
         all.removeFirst()
-        DispatchQueue.global(qos: .default).async { [weak self] in
-            guard let self = self else { return }
-            //let first20 = Array(all[0...17])
-            
-            for product in all {
-                if let row = db.insert(productId: product.productId,
+        let deletedAll = db.deleteAll()
+        print("Deleted all items \(deletedAll): \(db.getProducts().count)......")
+        let group = DispatchGroup()
+        group.enter()
+        DispatchQueue.global().async {
+            let toBeLoaded = Array(all[0...10000])
+            for product in toBeLoaded {
+                let result = db.insert(productId: product.productId,
                                        title: product.title,
                                        listPrice: product.listPrice,
                                        salesPrice: product.salesPrice,
                                        color: product.color,
-                                       size: product.size) {
+                                       size: product.size)
 
-                    self.progress.value = Float(row) / Float(all.count)
+                if let row = result.0 {
+                    self.progress.value = Float(row) / Float(toBeLoaded.count)
                     print("inserted at \(row), all = \(all.count), progress: \(self.progress.value)")
                 }
-
             }
-
-//            db.deleteAll()
-//
-//            let curr = db.getProducts()
-//            print("... \(curr.count)...")
-//            for p in curr {
-//                print("\(p.productId); \(p.title); \(p.listPrice); \(p.salesPrice); \(p.color); \(p.size)")
-//            }
+            group.leave()
         }
-        
-        
-        
+        group.notify(queue: DispatchQueue.main) {
+            self.dBLoadingCompletion.value = true
+            print("Database loading is finished...")
+        }
+//        let deletedAll = db.deleteAll()
+//        print("Deleted all items \(deletedAll): \(db.getProducts().count)......")
+        //            for p in curr {
+        //                print("\(p.productId); \(p.title); \(p.listPrice); \(p.salesPrice); \(p.color); \(p.size)")
+        //            }
     }
 }

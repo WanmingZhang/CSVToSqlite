@@ -60,8 +60,11 @@ class ProductDataStore {
         }
     }
     
-    func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> Int64? {
-        guard let database = db else { return nil }
+    // MARK: Insert
+    func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> (Int64?, Error?) {
+        guard let database = db else {
+            return (nil, nil)
+        }
         
         //productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String
         let insert = products.insert(self.productId <- productId,
@@ -72,13 +75,14 @@ class ProductDataStore {
                                      self.size <- size)
         do {
             let rowID = try database.run(insert)
-            return rowID
+            return (rowID, nil)
         } catch {
-            print(error)
-            return nil
+            print("Error inserting record to database: \(error.localizedDescription)")
+            return (nil, error)
         }
     }
     
+    // MARK: Retrieve
     func getProducts() -> [PSProduct] {
         var products: [PSProduct] = []
         guard let database = db else { return [] }
@@ -97,8 +101,8 @@ class ProductDataStore {
         }
         return products
     }
-    // MARK: delete
     
+    // MARK: delete
     func deleteAll() -> Bool {
         guard let database = db else {
             return false
@@ -140,6 +144,7 @@ class ProductDataStore {
             return false
         }
     }
+    
 //    func findProduct(by name: String) -> [PSProduct]? {
 //        //var task: Task = Task(id: taskId, name: "", date: Date(), status: false)
 //        guard let database = db else { return nil }
