@@ -177,22 +177,12 @@
 				C7427D5829A6D2170004478B /* Assets.xcassets */,
 				C7427D5A29A6D2170004478B /* LaunchScreen.storyboard */,
 				C7427D5D29A6D2170004478B /* Info.plist */,
-				C7427D9629A83C8E0004478B /* PSProduct.swift */,
-				C7427D8029A6D3090004478B /* PSDownloadManager.swift */,
-				C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */,
-				C7427D8A29A729870004478B /* PSDownloadItem.swift */,
-				C7427D8C29A745C60004478B /* PSFileService.swift */,
-				C7427D8E29A764850004478B /* Constants.swift */,
-				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
-				C7427D9229A835C00004478B /* PSCSVParser.swift */,
-				C7427D9429A837AF0004478B /* PSDatabaseViewController.swift */,
-				C7427D9829A8B83C0004478B /* ProductDataStore.swift */,
-				C7427D9A29A8D0BA0004478B /* PSDatabaseViewModel.swift */,
-				C7427D9C29A8D5210004478B /* Observable.swift */,
-				C7427D9E29A99AC10004478B /* PSSearchViewController.swift */,
-				C7427DA029A99B120004478B /* PSProductCell.swift */,
-				C7427DA229A99C630004478B /* PSSearchViewModel.swift */,
-				C7427DA429A9A0460004478B /* PSTintedButton.swift */,
+				C7427DA829AA29D30004478B /* Model */,
+				C7427DA929AA29F20004478B /* Service */,
+				C7427DAA29AA2A100004478B /* Utils */,
+				C7427DA629AA296C0004478B /* Views */,
+				C7427DAB29AA2A2C0004478B /* Database */,
+				C7427DA729AA29B70004478B /* Generics */,
 			);
 			path = PSCatalog;
 			sourceTree = "<group>";
@@ -212,6 +202,64 @@
 				C7427D7229A6D2170004478B /* PSCatalogUITestsLaunchTests.swift */,
 			);
 			path = PSCatalogUITests;
+			sourceTree = "<group>";
+		};
+		C7427DA629AA296C0004478B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7427DA429A9A0460004478B /* PSTintedButton.swift */,
+				C7427D9029A82B660004478B /* UIViewController+Alert.swift */,
+				C7427D8429A6E1C20004478B /* PSDownloadViewController.swift */,
+				C7427D9429A837AF0004478B /* PSDatabaseViewController.swift */,
+				C7427D9A29A8D0BA0004478B /* PSDatabaseViewModel.swift */,
+				C7427D9E29A99AC10004478B /* PSSearchViewController.swift */,
+				C7427DA229A99C630004478B /* PSSearchViewModel.swift */,
+				C7427DA029A99B120004478B /* PSProductCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C7427DA729AA29B70004478B /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				C7427D9C29A8D5210004478B /* Observable.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
+		C7427DA829AA29D30004478B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7427D9629A83C8E0004478B /* PSProduct.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7427DA929AA29F20004478B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C7427D8029A6D3090004478B /* PSDownloadManager.swift */,
+				C7427D8A29A729870004478B /* PSDownloadItem.swift */,
+				C7427D8C29A745C60004478B /* PSFileService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C7427DAA29AA2A100004478B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C7427D8E29A764850004478B /* Constants.swift */,
+				C7427D9229A835C00004478B /* PSCSVParser.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C7427DAB29AA2A2C0004478B /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C7427D9829A8B83C0004478B /* ProductDataStore.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

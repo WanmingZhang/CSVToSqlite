@@ -8,6 +8,12 @@
 import Foundation
 import SQLite
 
+/// A class that encapsulates the connection with SQLite.
+/// Create Database and Table
+/// Perform Insert and Read
+/// Perform Find
+/// Perform Delete
+
 class ProductDataStore {
     private let products = Table("products")
 
@@ -22,6 +28,7 @@ class ProductDataStore {
 
     private var db: Connection? = nil
     
+    // Create Database
     private init() {
         if let docDir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             let dirPath = docDir.appendingPathComponent(Constants.DIR_Product_DB)
@@ -41,6 +48,7 @@ class ProductDataStore {
         }
     }
     
+    // MARK: create table
     private func createTable() {
         guard let database = db else {
             return
@@ -83,13 +91,14 @@ class ProductDataStore {
     }
     
     // MARK: query
-    func filterProducts(by searchString: String) -> ([PSProduct]?, Error?) {
+    func filterProducts(by searchString: String, limit: Int, offset: Int) -> ([PSProduct]?, Error?) {
         guard let database = db else { return (nil, nil) }
-        var filtered: [PSProduct] = []
+        var filtered: [PSProduct]?
         let lowercased = searchString.lowercased()
 
         // SELECT * FROM "products" WHERE ("title" LIKE searchString)
-        let filter = products.filter(title.lowercaseString.like(lowercased) || size.lowercaseString.like(lowercased) || color.lowercaseString.like(lowercased))
+        var filter = products.filter(title.lowercaseString.like(lowercased) || size.lowercaseString.like(lowercased) || color.lowercaseString.like(lowercased))
+        filter = filter.limit(limit, offset: offset)
         do {
             for row in try database.prepare(filter) {
                 let product = PSProduct(productId: row[productId],
@@ -98,7 +107,11 @@ class ProductDataStore {
                                         salesPrice: row[salesPrice],
                                         color: row[color],
                                         size: row[size])
-                filtered.append(product)
+                if filtered == nil {
+                    filtered = [PSProduct]()
+                    
+                }
+                filtered?.append(product)
             }
         } catch {
             print("query database error: \(error.localizedDescription)")
@@ -107,13 +120,7 @@ class ProductDataStore {
         return (filtered, nil)
     }
     
-    // MARK: access
-    //    let query = users.select(email)           // SELECT "email" FROM "users"
-    //                     .filter(name != nil)     // WHERE "name" IS NOT NULL
-    //                     .order(email.desc, name) // ORDER BY "email" DESC, "name"
-    //                     .limit(5, offset: 1)     // LIMIT 5 OFFSET 1
-        
-    func loadProductsFromDatabase(_ offset: Int, _ limit: Int) -> [PSProduct] {
+    func loadProductsFromDatabase(_ limit: Int, _ offset: Int) -> [PSProduct] {
         guard let database = db else { return [] }
         var products: [PSProduct] = []
         do {
@@ -195,10 +202,4 @@ class ProductDataStore {
         }
     }
 
-//    func getTask() {
-//        task = TaskDataStore.shared.findTask(taskId: id)
-//        taskName = task?.name ?? ""
-//        approxDate = task?.date ?? Date()
-//        status = task!.status ? "Completed" : "Incomplete"
-//    }
 }

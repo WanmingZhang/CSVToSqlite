@@ -20,6 +20,13 @@ class PSProductCell: UITableViewCell {
         configureBorder()
     }
 
+    override func prepareForReuse() {
+        title.text = ""
+        color.text = ""
+        size.text = ""
+        price.text = ""
+    }
+    
     func configureBorder() {
         borderView.layer.borderColor = UIColor.systemGray5.cgColor
         borderView.layer.borderWidth = 2.0
