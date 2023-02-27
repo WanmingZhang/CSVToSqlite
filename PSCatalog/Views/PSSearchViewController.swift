@@ -88,7 +88,7 @@ class PSSearchViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search by name, color, or size"
+        searchController.searchBar.placeholder = "Search by color, size, or price"
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.returnKeyType = .done
         navigationItem.searchController = searchController
