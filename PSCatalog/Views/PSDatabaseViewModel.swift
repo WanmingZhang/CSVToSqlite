@@ -61,8 +61,7 @@ class PSDatabaseViewModel {
         let group = DispatchGroup()
         group.enter()
         DispatchQueue.global().async {
-            let tobeLoaded = Array(all[0...9999])
-            for product in tobeLoaded {
+            for product in all {
                 let result = db.insert(productId: product.productId,
                                        title: product.title,
                                        listPrice: product.listPrice,
@@ -71,7 +70,7 @@ class PSDatabaseViewModel {
                                        size: product.size)
 
                 if let row = result.0 {
-                    self.progress.value = Float(row) / Float(tobeLoaded.count)
+                    self.progress.value = Float(row) / Float(all.count)
                     print("inserted at \(row), all = \(all.count), progress: \(self.progress.value)")
                 }
             }
