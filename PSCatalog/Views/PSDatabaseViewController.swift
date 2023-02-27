@@ -13,6 +13,7 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
+    var globalProgress: Float = 0
     
     required init?(coder: NSCoder) {
         let viewModel = PSDatabaseViewModel()
@@ -23,11 +24,27 @@ class PSDatabaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Process Catalog"
+        // back button
+        let backButton = UIBarButtonItem (title: "Back", style: .plain, target: self, action: #selector(backButtonClicked))
+        self.navigationItem.leftBarButtonItem = backButton
+        
+        // parse button - parse CSV file
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Parse", style: .plain, target: self, action: #selector(parseFile))
         setupBinder()
         configureSearchButton()
     }
 
+    @objc func backButtonClicked() {
+        if(globalProgress < 1.0){
+            self.presentAlertWithTitle(title:"Do not go back", message: "Wait for download to finish", options: "OK") { [weak self] option in
+                guard let self = self else { return }
+                print("back button clicked, progress = \(self.globalProgress)")
+            }
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func configureSearchButton() {
         searchButton.isEnabled = false
         searchButton.layer.cornerRadius = 8.0
@@ -60,6 +77,7 @@ class PSDatabaseViewController: UIViewController {
                 }
                 let percentage = String(format: "%.1f %", (progress * 100))
                 self.progressBar.setProgress(Float(progress), animated: true)
+                self.globalProgress = progress
                 self.progressLabel.text = "loading into database: \(percentage) % completed"
             }
         }
@@ -99,7 +117,4 @@ class PSDatabaseViewController: UIViewController {
     func createDataStore() {
         self.viewModel.loadDataIntoDB()
     }
-
-
-    
 }

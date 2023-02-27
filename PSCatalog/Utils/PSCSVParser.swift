@@ -9,6 +9,7 @@ import Foundation
 
 // helper function to parse CSV files
 
+// TODO: update deprecated API
 struct PSCSVParser {
     func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, completion: @escaping (Result<[PSProduct]?, Error>) -> Void) {
         let delimiter = ","

@@ -10,7 +10,6 @@ import Foundation
 /// create a directory in the app's Library/Caches directory
 /// move downloaded item from tmp  to Cache directory
 ///
-///
 protocol PSFileServiceProtocol {
     func moveFile(fromUrl url:URL,
                          toDirectory directory:String? ,
