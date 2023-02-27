@@ -23,7 +23,8 @@ class PSSearchViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        let viewModel = PSSearchViewModel()
+        let dataStore = ProductDataStore.shared
+        let viewModel = PSSearchViewModel(dataStore)
         self.viewModel = viewModel
         super.init(coder: coder)
     }

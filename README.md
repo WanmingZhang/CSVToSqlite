@@ -37,4 +37,10 @@ The project contains following modules:
 *  Operation on Sqlite database is done using a swift wrapper of Sqlite: https://github.com/stephencelis/SQLite.swift
 
 
+// TODO:
+* Update deprecated APIs.
+
+* Add more unit tests to increase code coverage.
+
+* Current UI is minimal, design a more feature rich UI to inprove user experience. For example, current search screen is all-in-one, in the future this could be expanded for a better search experience. 
 

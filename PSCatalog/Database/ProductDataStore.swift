@@ -14,7 +14,22 @@ import SQLite
 /// Perform Find
 /// Perform Delete
 
-class ProductDataStore {
+protocol PSDataStoreProtocol {
+    // insert
+    func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> (Int64?, Error?)
+    
+    // query
+    func filterProducts(by searchString: String, limit: Int, offset: Int) -> ([PSProduct]?, Error?)
+    func loadProductsFromDatabase(_ limit: Int, _ offset: Int) -> [PSProduct]
+    func getAllProducts() -> [PSProduct]
+    
+    // delete
+    func deleteAll() -> Bool
+    func delete(color: String) -> Bool
+    func delete(size: String) -> Bool
+}
+
+class ProductDataStore: PSDataStoreProtocol {
     private let products = Table("products")
 
     private let productId = Expression<String>("productId")
@@ -202,4 +217,45 @@ class ProductDataStore {
         }
     }
 
+}
+
+class MockProductDataStore: PSDataStoreProtocol {
+    var loadProductsFromDatabaseGotCalled = false
+    var queryDatabaseGotCalled = false
+    
+    // insert
+    func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> (Int64?, Error?) {
+        var row: Int64?
+        return (row, PSCustomError.database(errorDescription: "error inserting product to database"))
+    }
+    
+    // query
+    func filterProducts(by searchString: String, limit: Int, offset: Int) -> ([PSProduct]?, Error?) {
+        queryDatabaseGotCalled = true
+        var filtered: [PSProduct]?
+        return (filtered, PSCustomError.database(errorDescription: "error filtering products in database"))
+    }
+    func loadProductsFromDatabase(_ limit: Int, _ offset: Int) -> [PSProduct] {
+        loadProductsFromDatabaseGotCalled = true
+        let products = [PSProduct]()
+        return products
+    }
+    
+    func getAllProducts() -> [PSProduct] {
+        let products = [PSProduct]()
+        return products
+    }
+    
+    // delete
+    func deleteAll() -> Bool {
+        return true
+    }
+    
+    func delete(color: String) -> Bool {
+        return false
+    }
+    
+    func delete(size: String) -> Bool {
+        return false
+    }
 }

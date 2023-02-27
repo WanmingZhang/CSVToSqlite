@@ -13,10 +13,12 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
+    
     var globalProgress: Float = 0
     
     required init?(coder: NSCoder) {
-        let viewModel = PSDatabaseViewModel()
+        let dataStore = ProductDataStore.shared
+        let viewModel = PSDatabaseViewModel(dataStore)
         self.viewModel = viewModel
         super.init(coder: coder)
     }

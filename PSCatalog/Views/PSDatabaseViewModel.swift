@@ -12,7 +12,13 @@ class PSDatabaseViewModel {
     var errorMsg: Observable<String?> = Observable(nil)
     var progress: Observable<Float> = Observable(0)
     var dBLoadingCompletion: Observable<Bool> = Observable(false)
+    let dataStore: PSDataStoreProtocol
     
+    
+    init(_ dataStore: PSDataStoreProtocol) {
+        self.dataStore = dataStore
+    }
+
     func parseFile() {
         let parser = PSCSVParser()
         guard let url = getFileURL() else {return}

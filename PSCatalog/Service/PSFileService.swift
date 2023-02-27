@@ -11,18 +11,13 @@ import Foundation
 /// move downloaded item from tmp  to Cache directory
 ///
 protocol PSFileServiceProtocol {
-    func moveFile(fromUrl url:URL,
-                         toDirectory directory:String? ,
-                         withName name:String) -> (Bool, Error?, URL?)
     
-    func writeToDisk(fromUrl url:URL,
-                     toDirectory directory:String? ,
-                     withName name:String) -> (Bool, Error?, URL?)
+    func writeToDisk(fromUrl url: URL,
+                     toDirectory directory: String? ,
+                     withName name: String) -> (Bool, Error?, URL?)
     
-    func cacheDirectoryPath() -> URL
-    func createDirectoryIfNotExists(withName name:String) -> (Bool, Error?)
     func deleteFile(from directory: String, withName name: String) -> (Bool, Error?)
-    func deleteFile(at path: String) -> (Bool, Error?)
+    
 }
 
 struct PSFileService: PSFileServiceProtocol {
@@ -81,6 +76,7 @@ struct PSFileService: PSFileServiceProtocol {
     
     func cacheDirectoryPath() -> URL {
         let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        
         return URL(fileURLWithPath: cachePath)
     }
     
@@ -118,7 +114,6 @@ struct PSFileService: PSFileServiceProtocol {
     /// get file destination URL
     func getFileDestURL(directory: String, name: String) -> URL? {
         let directoryUrl = self.cacheDirectoryURL().appendingPathComponent(directory).appendingPathComponent(name)
-        //let directoryUrl = self.cacheDirectoryURL().appendingPathComponent(name)
         return directoryUrl
     }
     
@@ -151,6 +146,52 @@ struct PSFileService: PSFileServiceProtocol {
             let fileManager = FileManager.default
             // Delete file
             try fileManager.removeItem(atPath: path)
+            return (true, nil)
+        }
+        catch let error as NSError {
+            print("An error occurred when deleting file error: \(error.localizedDescription)")
+            return (false, error)
+        }
+    }
+    
+}
+
+struct MockFileService: PSFileServiceProtocol {
+
+    func cacheDirectoryURL() -> URL {
+        let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        return cachesDirectory
+    }
+    
+    func writeToDisk(fromUrl url: URL,
+                     toDirectory directory: String? ,
+                     withName name: String) -> (Bool, Error?, URL?) {
+        
+        let newUrl = self.cacheDirectoryURL().appendingPathComponent(directory ?? "test").appendingPathComponent(name)
+        
+        let content = "a super long test string"
+        let data = Data(content.utf8)
+        do {
+            try data.write(to: newUrl, options: .atomic)
+            return (true, nil, newUrl)
+        } catch {
+            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
+            return (false, error, newUrl)
+        }
+        
+    }
+    
+    func deleteFile(from directory: String, withName name: String) -> (Bool, Error?) {
+        let directoryUrl = self.cacheDirectoryURL().appendingPathComponent(directory).appendingPathComponent(name)
+
+        guard FileManager.default.fileExists(atPath: directoryUrl.path) else {
+            print("File does not exist")
+            return (false, PSCustomError.file(errorDescription: "File does not exist"))
+        }
+        do {
+            let fileManager = FileManager.default
+            // Delete file
+            try fileManager.removeItem(atPath: directoryUrl.path)
             return (true, nil)
         }
         catch let error as NSError {

@@ -16,27 +16,30 @@ class PSSearchViewModel {
     var filtered: Observable<[PSProduct]> = Observable([])
     var errorMsg: Observable<String?> = Observable(nil)
     
+    let dataStore: PSDataStoreProtocol
+    
+    init(_ dataStore: PSDataStoreProtocol) {
+        self.dataStore = dataStore
+    }
+    
     func loadProductsFromDatabase(_ limit: Int, _ offset: Int = 0) {
         self.filtered.value = []
-        let db = ProductDataStore.shared
-        let products = db.loadProductsFromDatabase(limit, offset)
+        let products = self.dataStore.loadProductsFromDatabase(limit, offset)
         self.products.value = products
         print("load data from database \(self.products.value.count)")
     }
     
     func loadMoreFromDatabase(_ limit: Int, _ offset: Int) {
-        let db = ProductDataStore.shared
-        let products = db.loadProductsFromDatabase(limit, offset)
+        let products = self.dataStore.loadProductsFromDatabase(limit, offset)
         self.products.value.append(contentsOf: products)
         print("load more data from database \(self.products.value.count)")
     }
     
     func queryDatabase(_ searchString: String, _ limit: Int, _ offset: Int = 0) {
-        let db = ProductDataStore.shared
         guard !searchString.isEmpty else {
             return
         }
-        let results = db.filterProducts(by: searchString, limit: limit, offset: offset)
+        let results = self.dataStore.filterProducts(by: searchString, limit: limit, offset: offset)
         guard let filteredList = results.0 else {
             errorMsg.value = results.1?.localizedDescription
             return
@@ -46,11 +49,10 @@ class PSSearchViewModel {
     }
     
     func loadMoreQueryFromDatabase(_ searchString: String, _ limit: Int, _ offset: Int) {
-        let db = ProductDataStore.shared
         guard !searchString.isEmpty else {
             return
         }
-        let results = db.filterProducts(by: searchString, limit: limit, offset: offset)
+        let results = self.dataStore.filterProducts(by: searchString, limit: limit, offset: offset)
         guard let moreFiltered = results.0 else {
             errorMsg.value = results.1?.localizedDescription
             return
