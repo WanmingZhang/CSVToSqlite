@@ -112,7 +112,7 @@ class ProductDataStore: PSDataStoreProtocol {
         let lowercased = searchString.lowercased()
 
         // SELECT * FROM "products" WHERE ("title" LIKE searchString)
-        var filter = products.filter(title.lowercaseString.like(lowercased) || size.lowercaseString.like(lowercased) || color.lowercaseString.like(lowercased) || listPrice == Double(lowercased) ?? 0)
+        var filter = products.filter(productId.lowercaseString == (lowercased) || size.lowercaseString.like(lowercased) || color.lowercaseString.like(lowercased))
         filter = filter.limit(limit, offset: offset)
         do {
             for row in try database.prepare(filter) {

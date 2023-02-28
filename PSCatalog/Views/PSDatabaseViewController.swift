@@ -38,7 +38,7 @@ class PSDatabaseViewController: UIViewController {
 
     @objc func backButtonClicked() {
         if(globalProgress < 1.0){
-            self.presentAlertWithTitle(title:"Do not go back", message: "Wait for download to finish", options: "OK") { [weak self] option in
+            self.presentAlertWithTitle(title:"Do not go back", message: "Wait for database loading to finish", options: "OK") { [weak self] option in
                 guard let self = self else { return }
                 print("back button clicked, progress = \(self.globalProgress)")
             }
