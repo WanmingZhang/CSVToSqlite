@@ -15,6 +15,7 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     var globalProgress: Float = 0
+    var fileUrl: URL?
     
     required init?(coder: NSCoder) {
         let dataStore = ProductDataStore.shared
@@ -95,7 +96,8 @@ class PSDatabaseViewController: UIViewController {
     }
 
     @objc func parseFile() {
-        self.viewModel.parseFile()
+        //self.viewModel.parseFile()
+        self.viewModel.streamReadingAndParse(from: self.fileUrl)
     }
     
     func presentAlert() {

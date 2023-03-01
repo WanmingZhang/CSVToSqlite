@@ -40,6 +40,31 @@ class PSDatabaseViewModel {
         }
     }
     
+    func streamReadingAndParse(from url: URL?) {
+        
+        //guard let fileUrl = getFileURL() else {return}
+        guard let url = url else { return }
+        let fileReader = StreamFileReader(url: url)
+        var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
+        items = []
+        let group = DispatchGroup()
+        group.enter()
+        DispatchQueue.global().async {
+            
+            while let line = fileReader.readLine() {
+                let product = PSCSVParser().parse(by: line, encoding: .utf8)
+                items.append(product)
+                //print("line from fileReader: \(line))")
+            }
+            group.leave()
+        }
+
+        group.notify(queue: DispatchQueue.main) {
+            self.products.value = items
+            print("parsed \(items.count) lines")
+        }
+    }
+    
     func getFileURL() -> URL? {
         let fileService = PSFileService()
         let directoryUrl = fileService.getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME)

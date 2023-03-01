@@ -121,15 +121,19 @@ extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
             
             let fileName = downloadItem.fileName ?? downloadTask.response?.suggestedFilename ?? (downloadTask.originalRequest?.url?.lastPathComponent)!
             let directoryName = downloadItem.directoryName
-            let fileMovingResult = fileService.writeToDisk(fromUrl: location, toDirectory: directoryName, withName: fileName)
-            let didSucceed = fileMovingResult.0
-            let error = fileMovingResult.1
-            let finalFileUrl = fileMovingResult.2
+            
+//            let fileMovingResult = fileService.writeToDisk(fromUrl: location, toDirectory: directoryName, withName: fileName)
+//            let didSucceed = fileMovingResult.0
+//            let error = fileMovingResult.1
+//            let finalFileUrl = fileMovingResult.2
+            
             let progressClosure = downloadItem.progressClosure
             
             DispatchQueue.main.async {
+                
                 progressClosure?(1.00)
-                (didSucceed ? downloadItem.completionBlock(nil,finalFileUrl) : downloadItem.completionBlock(error,nil))
+                downloadItem.completionBlock(nil, location)
+                //(didSucceed ? downloadItem.completionBlock(nil,finalFileUrl) : downloadItem.completionBlock(error,nil))
             }
         }
         self.ongoingDownloads.removeValue(forKey:key)
