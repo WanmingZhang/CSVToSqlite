@@ -117,6 +117,7 @@ class PSDatabaseViewController: UIViewController {
     }
     
     func createDataStore() {
-        self.viewModel.loadDataIntoDB()
+        let load = 10000
+        self.viewModel.loadDataIntoDB(inBatch: load)
     }
 }

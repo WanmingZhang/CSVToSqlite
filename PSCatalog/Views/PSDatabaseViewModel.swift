@@ -50,7 +50,38 @@ class PSDatabaseViewModel {
         let db = ProductDataStore.shared
         return db.getAllProducts()
     }
+    // load data in batch
+    func loadDataIntoDB(inBatch numOfRows: Int) {
+        var count = 0
+        var start = numOfRows * count
+        var end = start + numOfRows - 1
+        
+        let db = ProductDataStore.shared
+        var all = self.products.value
+        guard !all.isEmpty else { return }
+        all.removeFirst()
+        let deletedAll = db.deleteAll()
+        print("Deleted all items \(deletedAll): \(db.getAllProducts().count)......")
+        
+        let tobeLoaded = Array(all[start...end])
+        let group = DispatchGroup()
+        group.enter()
+        DispatchQueue.global().async {
+            let (lastRow, error) = db.insertInBatch(tobeLoaded)
+            if let row = lastRow {
+                self.progress.value = Float(row) / Float(numOfRows)
+                print("inserted at \(row), all = \(numOfRows), progress: \(self.progress.value)")
+            }
+            print("load database in batch: \(lastRow ?? -1), \(error?.localizedDescription ?? "")")
+            group.leave()
+        }
+        group.notify(queue: DispatchQueue.main) {
+            self.dBLoadingCompletion.value = true
+            print("Database loading is finished...")
+        }
+    }
     
+    // load the entire file into database all at once
     func loadDataIntoDB() {
         let db = ProductDataStore.shared
         var all = self.products.value

@@ -84,6 +84,34 @@ class ProductDataStore: PSDataStoreProtocol {
     }
     
     // MARK: Insert
+    func insertInBatch(_ batchProducts: [PSProduct]) -> (Int64?, Error?) {
+        guard let database = db else {
+            return (nil, nil)
+        }
+        var lastRowId: Int64 = 0
+        var setters = [[Setter]]()
+        for product in batchProducts {
+            let productIdSetter: Setter = self.productId <- product.productId
+            let titleSetter: Setter = self.title <- product.title
+            let listPriceSetter = self.listPrice <- product.listPrice
+            let salesPriceSetter = self.salesPrice <- product.salesPrice
+            let colorSetter = self.color <- product.color
+            let sizeSetter = self.size <- product.size
+    
+            let setter = [productIdSetter, titleSetter, listPriceSetter, salesPriceSetter, colorSetter, sizeSetter]
+            setters.append(setter)
+        }
+        do {
+            lastRowId = try database.run(products.insertMany(setters))
+            print("last inserted id: \(lastRowId)")
+        } catch {
+            print("insertion failed: \(error)")
+        }
+        
+        return (lastRowId, nil)
+    }
+    
+    // insert one record
     func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> (Int64?, Error?) {
         guard let database = db else {
             return (nil, nil)
