@@ -41,8 +41,6 @@ class PSDatabaseViewModel {
     }
     
     func streamReadingAndParse(from url: URL?) {
-        
-        //guard let fileUrl = getFileURL() else {return}
         guard let url = url else { return }
         let fileReader = StreamFileReader(url: url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]

@@ -18,38 +18,13 @@ protocol PSFileServiceProtocol {
     
     func deleteFile(from directory: String, withName name: String) -> (Bool, Error?)
     
+    func moveFile(fromUrl url:URL,
+                         toDirectory directory:String? ,
+                         withName name:String) -> (Bool, Error?, URL?)
 }
 
 struct PSFileService: PSFileServiceProtocol {
     // MARK:- Helpers
-    func streamFileAndParse(from path: String, completion: @escaping (([PSProduct]) -> Void)) {
-//        let parser = PSCSVParser()
-//        guard let fileUrl = getFileURL() else {return}
-        
-        let fileReader = StreamFileReader(path: path)
-        var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
-        items = []
-        let group = DispatchGroup()
-        group.enter()
-        DispatchQueue.global().async {
-            
-            while let line = fileReader.readLine() {
-                let product = PSCSVParser().parse(by: line, encoding: .utf8)
-                items.append(product)
-                //print("line from fileReader: \(line))")
-            }
-            group.leave()
-        }
-        
-        group.notify(queue: DispatchQueue.main) {
-            //self.products.value = items
-            completion(items)
-            print("parsed \(items.count) lines")
-            return
-        }
-    }
-    
-    
     func writeToDisk(fromUrl url:URL,
                      toDirectory directory:String? ,
                      withName name:String) -> (Bool, Error?, URL?) {
@@ -190,7 +165,9 @@ struct MockFileService: PSFileServiceProtocol {
         let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
         return cachesDirectory
     }
-    
+    func moveFile(fromUrl url: URL, toDirectory directory: String?, withName name: String) -> (Bool, Error?, URL?) {
+        return (false, nil, nil)
+    }
     func writeToDisk(fromUrl url: URL,
                      toDirectory directory: String? ,
                      withName name: String) -> (Bool, Error?, URL?) {

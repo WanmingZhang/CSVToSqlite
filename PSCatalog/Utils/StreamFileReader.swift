@@ -21,14 +21,11 @@ class StreamFileReader {
         } catch let error {
             print("error creating stream file reader: \(error.localizedDescription)")
         }
-        
-        //fileHandle = try FileHandle(forReadingAtPath: path)
         buffer = Data(capacity: bufferSize)
     }
     
     init(path: String) {
-        
-        fileHandle = try FileHandle(forReadingAtPath: path)
+        fileHandle = FileHandle(forReadingAtPath: path)
         buffer = Data(capacity: bufferSize)
     }
     

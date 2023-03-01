@@ -96,8 +96,11 @@ class PSDatabaseViewController: UIViewController {
     }
 
     @objc func parseFile() {
-        //self.viewModel.parseFile()
-        self.viewModel.streamReadingAndParse(from: self.fileUrl)
+        guard let url = self.fileUrl else { return }
+        let path = url.path
+        let exist = FileManager.default.fileExists(atPath: path)
+        print("file exist \(exist).... at \(path)")
+        self.viewModel.streamReadingAndParse(from: url)
     }
     
     func presentAlert() {
