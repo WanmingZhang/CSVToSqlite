@@ -121,6 +121,10 @@ extension PSDownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
             
             let fileName = downloadItem.fileName ?? downloadTask.response?.suggestedFilename ?? (downloadTask.originalRequest?.url?.lastPathComponent)!
             let directoryName = downloadItem.directoryName
+            
+            // if file with same name already exist, delete it then replace with new download
+            let deleteResult = fileService.deleteFile(from:directoryName ?? "", withName: fileName)
+            
             let fileMovingResult = fileService.moveFile(fromUrl: location, toDirectory: directoryName, withName: fileName)
             let didSucceed = fileMovingResult.0
             let error = fileMovingResult.1
