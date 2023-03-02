@@ -170,6 +170,9 @@
                                     <action selector="startLoadingDatabase:" destination="wlQ-aD-IAa" eventType="touchUpInside" id="uz2-kQ-c9R"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-yD-aZj">
+                                <rect key="frame" x="186.66666666666666" y="224" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vj6-9D-vXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -180,7 +183,9 @@
                             <constraint firstItem="pk3-dZ-TDq" firstAttribute="top" secondItem="jHu-t2-S9H" secondAttribute="bottom" constant="24" id="JmI-Ja-djo"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="top" secondItem="vj6-9D-vXi" secondAttribute="top" constant="100" id="Xfx-KA-5FU"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="jHu-t2-S9H" secondAttribute="trailing" constant="24" id="beV-gb-RTH"/>
+                            <constraint firstItem="j4m-yD-aZj" firstAttribute="centerY" secondItem="jHu-t2-S9H" secondAttribute="centerY" id="bnw-SW-BWw"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="yu4-07-LxK" secondAttribute="trailing" constant="16" id="dUw-ar-M2I"/>
+                            <constraint firstItem="j4m-yD-aZj" firstAttribute="centerX" secondItem="jHu-t2-S9H" secondAttribute="centerX" id="kcj-6l-bTg"/>
                             <constraint firstItem="jHu-t2-S9H" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="yGD-dZ-H6r"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="16" id="ya4-Wt-ttR"/>
                         </constraints>
@@ -191,6 +196,7 @@
                         <outlet property="progressBar" destination="pk3-dZ-TDq" id="Feo-K6-wZ1"/>
                         <outlet property="progressLabel" destination="6MV-SX-rYr" id="RAg-7W-sSL"/>
                         <outlet property="searchButton" destination="v1K-8N-FGS" id="6Z7-7d-oHc"/>
+                        <outlet property="spinner" destination="j4m-yD-aZj" id="kZQ-Jl-Zmr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sc-bX-7M2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

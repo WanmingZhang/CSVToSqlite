@@ -13,8 +13,8 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
-    
     @IBOutlet weak var loadingButton: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     var globalProgress: Float = 0
     
     required init?(coder: NSCoder) {
@@ -31,6 +31,7 @@ class PSDatabaseViewController: UIViewController {
         let backButton = UIBarButtonItem (title: "Back", style: .plain, target: self, action: #selector(backButtonClicked))
         self.navigationItem.leftBarButtonItem = backButton
     
+        self.spinner.isHidden = true
         setupBinder()
         configureButtons()
     }
@@ -47,6 +48,7 @@ class PSDatabaseViewController: UIViewController {
     }
     
     func configureButtons() {
+        loadingButton.isEnabled = true
         loadingButton.layer.cornerRadius = 8.0
         loadingButton.layer.borderColor = UIColor.systemCyan.cgColor
         loadingButton.layer.borderWidth = 2.0
@@ -89,13 +91,22 @@ class PSDatabaseViewController: UIViewController {
     }
 
     @IBAction func startLoadingDatabase(_ sender: Any) {
+        spinner.isHidden = false
+        spinner.startAnimating()
         guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
             return
         }
         let path = url.path
         let exist = FileManager.default.fileExists(atPath: path)
         print("file exist \(exist).... at \(path)")
-        self.viewModel.streamReadingAndParse(from: url)
+        self.viewModel.streamReadingAndParse(from: url) { [weak self] completed in
+            guard let self = self else { return }
+            if completed {
+                self.loadingButton.isEnabled = false
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+            }
+        }
     }
 
 }

@@ -40,7 +40,7 @@ class PSDatabaseViewModel {
         }
     }
     
-    func streamReadingAndParse(from url: URL?) {
+    func streamReadingAndParse(from url: URL?, completion: @escaping (Bool) -> Void) {
         guard let url = url else { return }
         let fileReader = PSStreamFileReader(url: url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
@@ -59,6 +59,7 @@ class PSDatabaseViewModel {
             guard let self = self else { return }
             print("parsed \(items.count) lines")
             items.removeFirst()
+            completion(true)
             self.loadDataIntoDBInBatch(items)
         }
     }
