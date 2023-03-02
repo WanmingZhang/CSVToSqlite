@@ -14,8 +14,8 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     
+    @IBOutlet weak var loadingButton: UIButton!
     var globalProgress: Float = 0
-    var fileUrl: URL?
     
     required init?(coder: NSCoder) {
         let dataStore = ProductDataStore.shared
@@ -30,11 +30,9 @@ class PSDatabaseViewController: UIViewController {
         // back button
         let backButton = UIBarButtonItem (title: "Back", style: .plain, target: self, action: #selector(backButtonClicked))
         self.navigationItem.leftBarButtonItem = backButton
-        
-        // parse button - parse CSV file
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Parse", style: .plain, target: self, action: #selector(parseFile))
+    
         setupBinder()
-        configureSearchButton()
+        configureButtons()
     }
 
     @objc func backButtonClicked() {
@@ -48,7 +46,11 @@ class PSDatabaseViewController: UIViewController {
         }
     }
     
-    func configureSearchButton() {
+    func configureButtons() {
+        loadingButton.layer.cornerRadius = 8.0
+        loadingButton.layer.borderColor = UIColor.systemCyan.cgColor
+        loadingButton.layer.borderWidth = 2.0
+        
         searchButton.isEnabled = false
         searchButton.layer.cornerRadius = 8.0
         updateSearchButtonState()
@@ -61,15 +63,6 @@ class PSDatabaseViewController: UIViewController {
     
     // binding of view and view model
     func setupBinder() {
-        viewModel.products.bind {[weak self] (_) in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                guard self.viewModel.products.value.count > 0 else {
-                    return
-                }
-                self.presentAlert()
-            }
-        }
         viewModel.progress.bind { [weak self] progress in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -95,34 +88,14 @@ class PSDatabaseViewController: UIViewController {
         }
     }
 
-    @objc func parseFile() {
-        guard let url = self.fileUrl else { return }
+    @IBAction func startLoadingDatabase(_ sender: Any) {
+        guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
+            return
+        }
         let path = url.path
         let exist = FileManager.default.fileExists(atPath: path)
         print("file exist \(exist).... at \(path)")
         self.viewModel.streamReadingAndParse(from: url)
     }
-    
-    func presentAlert() {
-        presentAlertWithTitle(title: "", message: "Ready to load data into database", options: "Start", "Cancel") { [weak self] (option) in
-            guard let self = self else { return }
-            print("option: \(option)")
-            switch(option) {
-                case "Start":
-                self.createDataStore()
-                    print("Start button pressed")
-                    break
-                case "Cancel":
-                    print("Cancel button pressed")
-                    break
-                default:
-                    break
-            }
-        }
-    }
-    
-    func createDataStore() {
-        let load = 10000
-        self.viewModel.loadDataIntoDB(inBatch: load)
-    }
+
 }

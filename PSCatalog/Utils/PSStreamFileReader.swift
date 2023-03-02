@@ -1,5 +1,5 @@
 //
-//  StreamFileReader.swift
+//  PSStreamFileReader.swift
 //  PSCatalog
 //
 //  Created by wanming zhang on 2/28/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StreamFileReader {
+class PSStreamFileReader {
     var fileHandle: FileHandle?
     var buffer: Data
     let bufferSize: Int = 1024

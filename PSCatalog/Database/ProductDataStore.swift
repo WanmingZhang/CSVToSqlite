@@ -17,6 +17,7 @@ import SQLite
 protocol PSDataStoreProtocol {
     // insert
     func insert(productId: String, title: String, listPrice: Double, salesPrice: Double, color: String, size: String) -> (Int64?, Error?)
+    func insertInBatch(_ batchProducts: [PSProduct]) -> (Int64?, Error?)
     
     // query
     func filterProducts(by searchString: String, limit: Int, offset: Int) -> ([PSProduct]?, Error?)
@@ -256,7 +257,10 @@ class MockProductDataStore: PSDataStoreProtocol {
         var row: Int64?
         return (row, PSCustomError.database(errorDescription: "error inserting product to database"))
     }
-    
+    func insertInBatch(_ batchProducts: [PSProduct]) -> (Int64?, Error?) {
+        var row: Int64?
+        return (row, PSCustomError.database(errorDescription: "error inserting product to database"))
+    }
     // query
     func filterProducts(by searchString: String, limit: Int, offset: Int) -> ([PSProduct]?, Error?) {
         queryDatabaseGotCalled = true

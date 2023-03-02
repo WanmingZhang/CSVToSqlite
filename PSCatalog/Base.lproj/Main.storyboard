@@ -156,6 +156,20 @@
                                     <segue destination="cjN-zJ-2e0" kind="show" id="HW4-6Y-3sS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-t2-S9H">
+                                <rect key="frame" x="24" y="214" width="345" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lG2-LG-GTk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Parse file and load into database">
+                                    <color key="titleColor" systemColor="systemCyanColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startLoadingDatabase:" destination="wlQ-aD-IAa" eventType="touchUpInside" id="uz2-kQ-c9R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vj6-9D-vXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -163,13 +177,17 @@
                             <constraint firstItem="v1K-8N-FGS" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="1D0-Gf-dda"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="v1K-8N-FGS" secondAttribute="trailing" constant="24" id="6l4-Ql-9Ug"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="bottom" secondItem="v1K-8N-FGS" secondAttribute="bottom" constant="30" id="7O5-xM-ypd"/>
+                            <constraint firstItem="pk3-dZ-TDq" firstAttribute="top" secondItem="jHu-t2-S9H" secondAttribute="bottom" constant="24" id="JmI-Ja-djo"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="top" secondItem="vj6-9D-vXi" secondAttribute="top" constant="100" id="Xfx-KA-5FU"/>
+                            <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="jHu-t2-S9H" secondAttribute="trailing" constant="24" id="beV-gb-RTH"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="yu4-07-LxK" secondAttribute="trailing" constant="16" id="dUw-ar-M2I"/>
+                            <constraint firstItem="jHu-t2-S9H" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="yGD-dZ-H6r"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="16" id="ya4-Wt-ttR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cQc-Vh-LeZ"/>
                     <connections>
+                        <outlet property="loadingButton" destination="jHu-t2-S9H" id="8RD-uY-k4l"/>
                         <outlet property="progressBar" destination="pk3-dZ-TDq" id="Feo-K6-wZ1"/>
                         <outlet property="progressLabel" destination="6MV-SX-rYr" id="RAg-7W-sSL"/>
                         <outlet property="searchButton" destination="v1K-8N-FGS" id="6Z7-7d-oHc"/>
@@ -177,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sc-bX-7M2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3763" y="4"/>
+            <point key="canvasLocation" x="3762.5954198473282" y="3.5211267605633805"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="cvs-0d-e4d">

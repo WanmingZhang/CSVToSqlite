@@ -42,24 +42,24 @@ class PSDatabaseViewModel {
     
     func streamReadingAndParse(from url: URL?) {
         guard let url = url else { return }
-        let fileReader = StreamFileReader(url: url)
+        let fileReader = PSStreamFileReader(url: url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
         items = []
         let group = DispatchGroup()
         group.enter()
         DispatchQueue.global().async {
-            
             while let line = fileReader.readLine() {
                 let product = PSCSVParser().parse(by: line, encoding: .utf8)
                 items.append(product)
-                //print("line from fileReader: \(line))")
             }
             group.leave()
         }
 
-        group.notify(queue: DispatchQueue.main) {
-            self.products.value = items
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            guard let self = self else { return }
             print("parsed \(items.count) lines")
+            items.removeFirst()
+            self.loadDataIntoDBInBatch(items)
         }
     }
     
@@ -70,34 +70,48 @@ class PSDatabaseViewModel {
     }
     
     func getAllProductsFromDB() -> [PSProduct] {
-        let db = ProductDataStore.shared
-        return db.getAllProducts()
+        return dataStore.getAllProducts()
     }
     // load data in batch
-    func loadDataIntoDB(inBatch numOfRows: Int) {
-        var count = 0
-        var start = numOfRows * count
-        var end = start + numOfRows - 1
-        
-        let db = ProductDataStore.shared
-        var all = self.products.value
-        guard !all.isEmpty else { return }
-        all.removeFirst()
-        let deletedAll = db.deleteAll()
-        print("Deleted all items \(deletedAll): \(db.getAllProducts().count)......")
-        
-        let tobeLoaded = Array(all[start...end])
+    func loadDataIntoDBInBatch(_ allRecords: [PSProduct]) {
+        let all = allRecords.count
+        let numOfRows = 1000
+        let loops = all / numOfRows
+        let deletedAll = dataStore.deleteAll()
+        print("Deleted all items \(deletedAll): \(dataStore.getAllProducts().count)......")
         let group = DispatchGroup()
         group.enter()
-        DispatchQueue.global().async {
-            let (lastRow, error) = db.insertInBatch(tobeLoaded)
-            if let row = lastRow {
-                self.progress.value = Float(row) / Float(numOfRows)
-                print("inserted at \(row), all = \(numOfRows), progress: \(self.progress.value)")
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            var last = 0
+            for i in 0..<loops {
+                let start = numOfRows * i
+                let end = start + numOfRows - 1
+                var tobeLoaded = Array(allRecords[start...end])
+                let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
+                if let row = lastRow {
+                    last = Int(row)
+                    self.progress.value = Float(row) / Float(all)
+                    print("inserted at \(row), all = \(all), progress: \(self.progress.value)")
+                }
+                print("load database in batch: \(lastRow ?? -1), \(error?.localizedDescription ?? "")")
             }
-            print("load database in batch: \(lastRow ?? -1), \(error?.localizedDescription ?? "")")
+            
+            if last < all { // if there is remainders
+                let tobeLoaded = Array(allRecords[last..<all])
+                print("remainder start: \(last), end: \(all-1), all: \(all)")
+                let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
+                if let row = lastRow {
+                    last = Int(row)
+                    self.progress.value = Float(row) / Float(all)
+                    print("inserted at \(row), all = \(all), progress: \(self.progress.value)")
+                }
+                
+            }
+            
             group.leave()
         }
+        
         group.notify(queue: DispatchQueue.main) {
             self.dBLoadingCompletion.value = true
             print("Database loading is finished...")

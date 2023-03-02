@@ -18,7 +18,6 @@ class PSDownloadViewController: UIViewController {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var finalUrlLabel: UILabel!
     @IBOutlet weak var processButton: UIButton!
-    var finalUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +59,6 @@ class PSDownloadViewController: UIViewController {
                 if let url = url {
                     print("Downloaded file's url is \(url.path)")
                     self.finalUrlLabel.text = "File saved at: \(url.path)"
-                    self.finalUrl = url
                     self.updateProcessButton()
                 }
             }
@@ -112,11 +110,6 @@ class PSDownloadViewController: UIViewController {
         if deleteResult.0 == true {
             //self.startDownload()
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let databaseVC = segue.destination as? PSDatabaseViewController else { return }
-        databaseVC.fileUrl = self.finalUrl
     }
     
 }

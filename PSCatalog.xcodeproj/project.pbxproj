@@ -38,7 +38,7 @@
 		C7427DAF29AC474B0004478B /* PSCustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DAE29AC474B0004478B /* PSCustomError.swift */; };
 		C7427DB529AC92B40004478B /* PSFileServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DB429AC92B40004478B /* PSFileServiceTests.swift */; };
 		C7427DB729AC9FFC0004478B /* PSSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DB629AC9FFC0004478B /* PSSearchViewModelTests.swift */; };
-		C7427DBB29AED5380004478B /* StreamFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DBA29AED5380004478B /* StreamFileReader.swift */; };
+		C7427DBB29AED5380004478B /* PSStreamFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DBA29AED5380004478B /* PSStreamFileReader.swift */; };
 		C7427DBD29AEE2AB0004478B /* PSFileParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DBC29AEE2AB0004478B /* PSFileParseTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,7 +99,7 @@
 		C7427DAE29AC474B0004478B /* PSCustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSCustomError.swift; sourceTree = "<group>"; };
 		C7427DB429AC92B40004478B /* PSFileServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileServiceTests.swift; sourceTree = "<group>"; };
 		C7427DB629AC9FFC0004478B /* PSSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSSearchViewModelTests.swift; sourceTree = "<group>"; };
-		C7427DBA29AED5380004478B /* StreamFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFileReader.swift; sourceTree = "<group>"; };
+		C7427DBA29AED5380004478B /* PSStreamFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSStreamFileReader.swift; sourceTree = "<group>"; };
 		C7427DBC29AEE2AB0004478B /* PSFileParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileParseTests.swift; sourceTree = "<group>"; };
 		D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog.release.xcconfig"; path = "Target Support Files/Pods-PSCatalog/Pods-PSCatalog.release.xcconfig"; sourceTree = "<group>"; };
 		E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalogTests.release.xcconfig"; path = "Target Support Files/Pods-PSCatalogTests/Pods-PSCatalogTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 			children = (
 				C7427D8E29A764850004478B /* Constants.swift */,
 				C7427D9229A835C00004478B /* PSCSVParser.swift */,
-				C7427DBA29AED5380004478B /* StreamFileReader.swift */,
+				C7427DBA29AED5380004478B /* PSStreamFileReader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -483,7 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7427DBB29AED5380004478B /* StreamFileReader.swift in Sources */,
+				C7427DBB29AED5380004478B /* PSStreamFileReader.swift in Sources */,
 				C7427D8D29A745C60004478B /* PSFileService.swift in Sources */,
 				C7427DA329A99C630004478B /* PSSearchViewModel.swift in Sources */,
 				C7427D9929A8B83C0004478B /* ProductDataStore.swift in Sources */,
