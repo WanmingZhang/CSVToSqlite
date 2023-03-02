@@ -55,6 +55,7 @@ class PSDatabaseViewController: UIViewController {
         }
         self.totalLines = self.viewModel.getNumOflines(from: url)
     }
+    
     func configureButtons() {
         loadingButton.isEnabled = true
         loadingButton.layer.cornerRadius = 8.0
@@ -104,9 +105,6 @@ class PSDatabaseViewController: UIViewController {
         guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
             return
         }
-//        let path = url.path
-//        let exist = FileManager.default.fileExists(atPath: path)
-//        print("file exist \(exist).... at \(path)")
         guard totalLines > 0 else {
             return
         }

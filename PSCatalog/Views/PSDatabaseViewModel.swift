@@ -45,7 +45,7 @@ class PSDatabaseViewModel {
         guard let url = url else { return 0}
         let fileReader = PSStreamFileReader(url: url)
         var count = 0
-        while let line = fileReader.readLine() {
+        while fileReader.readLine() != nil {
             count += 1
         }
         return count
@@ -79,7 +79,7 @@ class PSDatabaseViewModel {
                         count += 1
                     }
                 }
-                self.loadDataInBatch(items, 1000000)
+                self.loadDataInBatch(items, totalLines-1) // skip the title line
             }
             group.leave()
         }
