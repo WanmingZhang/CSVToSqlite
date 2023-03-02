@@ -91,7 +91,7 @@ class PSDatabaseViewModel {
             for i in 0..<loops {
                 let start = self.rowsPerBatch * i
                 let end = start + self.rowsPerBatch - 1
-                var tobeLoaded = Array(allRecords[start...end])
+                let tobeLoaded = Array(allRecords[start...end])
                 let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
                 if let row = lastRow {
                     last = Int(row)
@@ -110,7 +110,6 @@ class PSDatabaseViewModel {
                     self.progress.value = Float(row) / Float(all)
                     print("inserted at \(row), all = \(all), progress: \(self.progress.value)")
                 }
-                
             }
             
             group.leave()

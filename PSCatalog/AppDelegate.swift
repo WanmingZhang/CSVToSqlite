@@ -33,5 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("handleEventsForBackgroundURLSession for \(identifier)")
             completionHandler()
         }
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        print("applicationDidReceiveMemoryWarning...")
+    }
 }
 
