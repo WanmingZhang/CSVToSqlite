@@ -56,4 +56,9 @@ class PSStreamFileReader {
         
         return line?.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    func close() -> Void {
+        fileHandle?.closeFile()
+        fileHandle = nil
+    }
 }

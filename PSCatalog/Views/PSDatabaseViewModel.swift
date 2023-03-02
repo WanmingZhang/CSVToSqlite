@@ -13,7 +13,7 @@ class PSDatabaseViewModel {
     var progress: Observable<Float> = Observable(0)
     var dBLoadingCompletion: Observable<Bool> = Observable(false)
     let dataStore: PSDataStoreProtocol
-    
+    let rowsPerBatch = 1000
     
     init(_ dataStore: PSDataStoreProtocol) {
         self.dataStore = dataStore
@@ -48,6 +48,9 @@ class PSDatabaseViewModel {
         let group = DispatchGroup()
         group.enter()
         DispatchQueue.global().async {
+            defer {
+                fileReader.close()
+            }
             while let line = fileReader.readLine() {
                 let product = PSCSVParser().parse(by: line, encoding: .utf8)
                 items.append(product)
@@ -76,8 +79,8 @@ class PSDatabaseViewModel {
     // load data in batch
     func loadDataIntoDBInBatch(_ allRecords: [PSProduct]) {
         let all = allRecords.count
-        let numOfRows = 1000
-        let loops = all / numOfRows
+        
+        let loops = all / rowsPerBatch
         let deletedAll = dataStore.deleteAll()
         print("Deleted all items \(deletedAll): \(dataStore.getAllProducts().count)......")
         let group = DispatchGroup()
@@ -86,8 +89,8 @@ class PSDatabaseViewModel {
             guard let self = self else { return }
             var last = 0
             for i in 0..<loops {
-                let start = numOfRows * i
-                let end = start + numOfRows - 1
+                let start = self.rowsPerBatch * i
+                let end = start + self.rowsPerBatch - 1
                 var tobeLoaded = Array(allRecords[start...end])
                 let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
                 if let row = lastRow {
