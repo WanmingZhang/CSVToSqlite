@@ -18,7 +18,8 @@ class PSDatabaseViewModel {
     init(_ dataStore: PSDataStoreProtocol) {
         self.dataStore = dataStore
     }
-
+    /// parse entire file using CSV parser
+    /// no longered preferred since stream reading is preferred
     func parseFile() {
         let parser = PSCSVParser()
         guard let url = getFileURL() else {return}
@@ -40,20 +41,45 @@ class PSDatabaseViewModel {
         }
     }
     
-    func streamReadingAndParse(from url: URL?, completion: @escaping (Bool) -> Void) {
+    func getNumOflines(from url: URL?) -> Int {
+        guard let url = url else { return 0}
+        let fileReader = PSStreamFileReader(url: url)
+        var count = 0
+        while let line = fileReader.readLine() {
+            count += 1
+        }
+        return count
+    }
+    
+    func streamReadingAndParse(from url: URL?, _ totalLines: Int, completion: @escaping (Bool) -> Void) {
         guard let url = url else { return }
         let fileReader = PSStreamFileReader(url: url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
         items = []
+        let deletedAll = dataStore.deleteAll()
+        print("Deleted all items \(deletedAll): \(dataStore.getAllProducts().count)......")
+        let numOfIterations = totalLines / rowsPerBatch
         let group = DispatchGroup()
         group.enter()
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             defer {
                 fileReader.close()
             }
-            while let line = fileReader.readLine() {
-                let product = PSCSVParser().parse(by: line, encoding: .utf8)
-                items.append(product)
+            for _ in 0..<numOfIterations {
+                var count = 0
+                items = []
+                while count < self.rowsPerBatch {
+                    if let line = fileReader.readLine() {
+                        let product = PSCSVParser().parse(by: line, encoding: .utf8)
+                        if product.productId == "productId" || product.title == "title" {
+                            continue
+                        }
+                        items.append(product)
+                        count += 1
+                    }
+                }
+                self.loadDataInBatch(items, 1000000)
             }
             group.leave()
         }
@@ -61,9 +87,10 @@ class PSDatabaseViewModel {
         group.notify(queue: DispatchQueue.main) { [weak self] in
             guard let self = self else { return }
             print("parsed \(items.count) lines")
-            items.removeFirst()
+            self.dBLoadingCompletion.value = true
+            print("Database loading is finished...")
             completion(true)
-            self.loadDataIntoDBInBatch(items)
+            //self.loadDataIntoDBInBatch(items)
         }
     }
     
@@ -76,48 +103,13 @@ class PSDatabaseViewModel {
     func getAllProductsFromDB() -> [PSProduct] {
         return dataStore.getAllProducts()
     }
-    // load data in batch
-    func loadDataIntoDBInBatch(_ allRecords: [PSProduct]) {
-        let all = allRecords.count
+    
+    func loadDataInBatch(_ batch: [PSProduct], _ totalLines: Int) {
         
-        let loops = all / rowsPerBatch
-        let deletedAll = dataStore.deleteAll()
-        print("Deleted all items \(deletedAll): \(dataStore.getAllProducts().count)......")
-        let group = DispatchGroup()
-        group.enter()
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
-            var last = 0
-            for i in 0..<loops {
-                let start = self.rowsPerBatch * i
-                let end = start + self.rowsPerBatch - 1
-                let tobeLoaded = Array(allRecords[start...end])
-                let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
-                if let row = lastRow {
-                    last = Int(row)
-                    self.progress.value = Float(row) / Float(all)
-                    print("inserted at \(row), all = \(all), progress: \(self.progress.value)")
-                }
-                print("load database in batch: \(lastRow ?? -1), \(error?.localizedDescription ?? "")")
-            }
-            
-            if last < all { // if there is remainders
-                let tobeLoaded = Array(allRecords[last..<all])
-                print("remainder start: \(last), end: \(all-1), all: \(all)")
-                let (lastRow, error) = self.dataStore.insertInBatch(tobeLoaded)
-                if let row = lastRow {
-                    last = Int(row)
-                    self.progress.value = Float(row) / Float(all)
-                    print("inserted at \(row), all = \(all), progress: \(self.progress.value)")
-                }
-            }
-            
-            group.leave()
-        }
-        
-        group.notify(queue: DispatchQueue.main) {
-            self.dBLoadingCompletion.value = true
-            print("Database loading is finished...")
+        let (lastRow, error) = self.dataStore.insertInBatch(batch)
+        if let row = lastRow {
+            self.progress.value = Float(row) / Float(totalLines)
+            print("inserted at \(row), totalLines = \(totalLines), progress: \(self.progress.value)")
         }
     }
     

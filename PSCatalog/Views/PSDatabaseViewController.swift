@@ -16,6 +16,7 @@ class PSDatabaseViewController: UIViewController {
     @IBOutlet weak var loadingButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     var globalProgress: Float = 0
+    var totalLines: Int = 0
     
     required init?(coder: NSCoder) {
         let dataStore = ProductDataStore.shared
@@ -34,6 +35,7 @@ class PSDatabaseViewController: UIViewController {
         self.spinner.isHidden = true
         setupBinder()
         configureButtons()
+        getTotalNumOfLines()
     }
 
     @objc func backButtonClicked() {
@@ -47,6 +49,12 @@ class PSDatabaseViewController: UIViewController {
         }
     }
     
+    func getTotalNumOfLines() {
+        guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
+            return
+        }
+        self.totalLines = self.viewModel.getNumOflines(from: url)
+    }
     func configureButtons() {
         loadingButton.isEnabled = true
         loadingButton.layer.cornerRadius = 8.0
@@ -96,10 +104,13 @@ class PSDatabaseViewController: UIViewController {
         guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
             return
         }
-        let path = url.path
-        let exist = FileManager.default.fileExists(atPath: path)
-        print("file exist \(exist).... at \(path)")
-        self.viewModel.streamReadingAndParse(from: url) { [weak self] completed in
+//        let path = url.path
+//        let exist = FileManager.default.fileExists(atPath: path)
+//        print("file exist \(exist).... at \(path)")
+        guard totalLines > 0 else {
+            return
+        }
+        self.viewModel.streamReadingAndParse(from: url, totalLines) { [weak self] completed in
             guard let self = self else { return }
             if completed {
                 self.loadingButton.isEnabled = false
