@@ -157,7 +157,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHu-t2-S9H">
-                                <rect key="frame" x="24" y="170" width="361" height="40"/>
+                                <rect key="frame" x="24" y="170" width="345" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="lG2-LG-GTk"/>
@@ -175,7 +175,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-yD-aZj">
-                                <rect key="frame" x="194.66666666666666" y="180" width="20" height="20"/>
+                                <rect key="frame" x="186.66666666666666" y="180" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vj6-9D-vXi"/>
@@ -184,13 +184,13 @@
                             <constraint firstItem="v1K-8N-FGS" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="1D0-Gf-dda"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="v1K-8N-FGS" secondAttribute="trailing" constant="24" id="6l4-Ql-9Ug"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="bottom" secondItem="v1K-8N-FGS" secondAttribute="bottom" constant="30" id="7O5-xM-ypd"/>
-                            <constraint firstItem="jHu-t2-S9H" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="Fxk-kP-2KP"/>
                             <constraint firstItem="pk3-dZ-TDq" firstAttribute="top" secondItem="jHu-t2-S9H" secondAttribute="bottom" constant="24" id="JmI-Ja-djo"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="top" secondItem="vj6-9D-vXi" secondAttribute="top" constant="100" id="Xfx-KA-5FU"/>
                             <constraint firstItem="j4m-yD-aZj" firstAttribute="centerY" secondItem="jHu-t2-S9H" secondAttribute="centerY" id="bnw-SW-BWw"/>
-                            <constraint firstItem="jHu-t2-S9H" firstAttribute="width" secondItem="yu4-07-LxK" secondAttribute="width" id="czY-qp-7jg"/>
                             <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="yu4-07-LxK" secondAttribute="trailing" constant="16" id="dUw-ar-M2I"/>
+                            <constraint firstItem="jHu-t2-S9H" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="24" id="iox-I8-DDq"/>
                             <constraint firstItem="j4m-yD-aZj" firstAttribute="centerX" secondItem="jHu-t2-S9H" secondAttribute="centerX" id="kcj-6l-bTg"/>
+                            <constraint firstItem="vj6-9D-vXi" firstAttribute="trailing" secondItem="jHu-t2-S9H" secondAttribute="trailing" priority="990" constant="24" id="xYf-jl-2AC"/>
                             <constraint firstItem="yu4-07-LxK" firstAttribute="leading" secondItem="vj6-9D-vXi" secondAttribute="leading" constant="16" id="ya4-Wt-ttR"/>
                         </constraints>
                     </view>
