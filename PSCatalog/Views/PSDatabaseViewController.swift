@@ -100,14 +100,21 @@ class PSDatabaseViewController: UIViewController {
     }
 
     @IBAction func startLoadingDatabase(_ sender: Any) {
-        spinner.isHidden = false
-        spinner.startAnimating()
-        guard let url = PSFileService().getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
+        let fileService = PSFileService()
+//        let deleteResult = fileService.deleteFile(from:Constants.DIR_CATALOG, withName: Constants.FILE_NAME)
+        guard let url = fileService.getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
+            return
+        }
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            print("File does not exist")
+            presentDownloadFileAlert()
             return
         }
         guard totalLines > 0 else {
             return
         }
+        spinner.isHidden = false
+        spinner.startAnimating()
         self.viewModel.streamReadingAndParse(from: url, totalLines) { [weak self] completed in
             guard let self = self else { return }
             if completed {
@@ -115,6 +122,16 @@ class PSDatabaseViewController: UIViewController {
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true
             }
+        }
+    }
+    
+    func presentDownloadFileAlert() {
+        self.presentAlertWithTitle(title: "File does not exist", message: "go back to previous screen and download the file first", options: "Ok")
+        { [weak self] option in
+            guard let self = self else { return }
+            print("go back to download page and download file")
+            self.navigationController?.popViewController(animated: true)
+            
         }
     }
 

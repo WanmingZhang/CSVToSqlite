@@ -9,6 +9,7 @@ import UIKit
 
 class PSProductCell: UITableViewCell {
 
+    @IBOutlet weak var producID: UILabel!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var color: UILabel!
@@ -21,6 +22,7 @@ class PSProductCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        producID.text = ""
         title.text = ""
         color.text = ""
         size.text = ""
@@ -40,6 +42,7 @@ class PSProductCell: UITableViewCell {
     }
     
     func update(with product: PSProduct) {
+        producID.text = product.productId
         title.text = product.title
         color.text = product.color
         size.text = product.size
