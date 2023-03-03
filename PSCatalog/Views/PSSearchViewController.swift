@@ -116,14 +116,14 @@ extension PSSearchViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         if isFiltering {
-            guard viewModel.filtered.value.count > 0 else {
+            guard viewModel.filtered.value.count > indexPath.row else {
                 return cell
             }
             let product = viewModel.filtered.value[indexPath.row]
             productCell.update(with: product)
             return productCell
         } else {
-            guard viewModel.products.value.count > 0 else {
+            guard viewModel.products.value.count > indexPath.row else {
                 return cell
             }
             let product = viewModel.products.value[indexPath.row]
