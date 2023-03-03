@@ -146,7 +146,7 @@ extension PSSearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             let productCount = viewModel.products.value.count
-            if productCount - 1 == indexPath.row && !isLoading {
+            if productCount - limit == indexPath.row && !isLoading {
                 print("reached end of page: \(productCount)")
                 loadMoreData(indexPath: indexPath)
             }
