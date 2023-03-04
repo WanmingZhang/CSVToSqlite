@@ -36,8 +36,13 @@ class PSDatabaseViewController: UIViewController {
         setupBinder()
         configureButtons()
         getTotalNumOfLines()
+        
     }
 
+    override func didReceiveMemoryWarning() {
+        print("didReceiveMemoryWarning: PSDatabaseViewController")
+    }
+    
     @objc func backButtonClicked() {
         if(globalProgress > 0 && globalProgress < 1.0){
             self.presentAlertWithTitle(title:"Do not go back", message: "Wait for database loading to finish", options: "OK") { [weak self] option in
@@ -115,7 +120,7 @@ class PSDatabaseViewController: UIViewController {
         }
         spinner.isHidden = false
         spinner.startAnimating()
-        self.viewModel.streamReadingAndParse(from: url, totalLines) { [weak self] completed in
+        self.viewModel.inputStreamReadingAndParse(from: url, totalLines) { [weak self] completed in
             guard let self = self else { return }
             if completed {
                 self.loadingButton.isEnabled = false

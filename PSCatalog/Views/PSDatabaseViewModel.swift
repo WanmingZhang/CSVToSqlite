@@ -51,6 +51,52 @@ class PSDatabaseViewModel {
         return count
     }
     
+    // MARK: read with InputStream
+    func inputStreamReadingAndParse(from url: URL?, _ totalLines: Int, completion: @escaping (Bool) -> Void) {
+        guard let url = url else { return }
+        //let fileReader = PSStreamFileReader(url: url)
+        let inputstream = PSInputStreamReader(url)
+        var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
+        items = []
+        let deletedAll = dataStore.deleteAll()
+        print("Deleted all items \(deletedAll): \(dataStore.getAllProducts().count)......")
+        let numOfIterations = totalLines / rowsPerBatch
+        let group = DispatchGroup()
+        group.enter()
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            defer {
+                inputstream.close()
+            }
+            for _ in 0..<numOfIterations {
+                var count = 0
+                items = []
+                while count < self.rowsPerBatch {
+                    if let line = inputstream.readLine() {
+                        let product = PSCSVParser().parse(by: line, encoding: .utf8)
+                        if product.productId == "productId" || product.title == "title" {
+                            continue
+                        }
+                        items.append(product)
+                        count += 1
+                    }
+                }
+                self.loadDataInBatch(items, totalLines-1) // skip the title line
+            }
+            group.leave()
+        }
+
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            guard let self = self else { return }
+            print("parsed \(items.count) lines")
+            self.dBLoadingCompletion.value = true
+            print("Database loading is finished...")
+            completion(true)
+            //self.loadDataIntoDBInBatch(items)
+        }
+    }
+    
+    // MARK: read with FileHandle
     func streamReadingAndParse(from url: URL?, _ totalLines: Int, completion: @escaping (Bool) -> Void) {
         guard let url = url else { return }
         let fileReader = PSStreamFileReader(url: url)

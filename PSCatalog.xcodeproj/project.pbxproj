@@ -40,6 +40,7 @@
 		C7427DB729AC9FFC0004478B /* PSSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DB629AC9FFC0004478B /* PSSearchViewModelTests.swift */; };
 		C7427DBB29AED5380004478B /* PSStreamFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DBA29AED5380004478B /* PSStreamFileReader.swift */; };
 		C7427DBD29AEE2AB0004478B /* PSFileParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7427DBC29AEE2AB0004478B /* PSFileParseTests.swift */; };
+		C78C1E6D29B2BC2C007B6C3C /* PSInputStreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78C1E6C29B2BC2C007B6C3C /* PSInputStreamReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		C7427DB629AC9FFC0004478B /* PSSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSSearchViewModelTests.swift; sourceTree = "<group>"; };
 		C7427DBA29AED5380004478B /* PSStreamFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSStreamFileReader.swift; sourceTree = "<group>"; };
 		C7427DBC29AEE2AB0004478B /* PSFileParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSFileParseTests.swift; sourceTree = "<group>"; };
+		C78C1E6C29B2BC2C007B6C3C /* PSInputStreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSInputStreamReader.swift; sourceTree = "<group>"; };
 		D36AEFE33F934A3332BAF26F /* Pods-PSCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalog.release.xcconfig"; path = "Target Support Files/Pods-PSCatalog/Pods-PSCatalog.release.xcconfig"; sourceTree = "<group>"; };
 		E328B25932ED40CC278E7690 /* Pods-PSCatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSCatalogTests.release.xcconfig"; path = "Target Support Files/Pods-PSCatalogTests/Pods-PSCatalogTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1FBB9FE33D95833A9666958 /* libPods-PSCatalog-PSCatalogUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PSCatalog-PSCatalogUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 				C7427D8E29A764850004478B /* Constants.swift */,
 				C7427D9229A835C00004478B /* PSCSVParser.swift */,
 				C7427DBA29AED5380004478B /* PSStreamFileReader.swift */,
+				C78C1E6C29B2BC2C007B6C3C /* PSInputStreamReader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				C7427D8B29A729870004478B /* PSDownloadItem.swift in Sources */,
 				C7427D9529A837AF0004478B /* PSDatabaseViewController.swift in Sources */,
 				C7427D9F29A99AC10004478B /* PSSearchViewController.swift in Sources */,
+				C78C1E6D29B2BC2C007B6C3C /* PSInputStreamReader.swift in Sources */,
 				C7427D8F29A764850004478B /* Constants.swift in Sources */,
 				C7427DAF29AC474B0004478B /* PSCustomError.swift in Sources */,
 				C7427D9D29A8D5210004478B /* Observable.swift in Sources */,
