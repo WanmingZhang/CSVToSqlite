@@ -43,7 +43,7 @@ class PSDatabaseViewModel {
     
     func getNumOflines(from url: URL?) -> Int {
         guard let url = url else { return 0}
-        let fileReader = PSStreamFileReader(url: url)
+        let fileReader = PSFileHandleReader(url: url)
         var count = 0
         while fileReader.readLine() != nil {
             count += 1
@@ -99,7 +99,7 @@ class PSDatabaseViewModel {
     // MARK: read with FileHandle
     func streamReadingAndParse(from url: URL?, _ totalLines: Int, completion: @escaping (Bool) -> Void) {
         guard let url = url else { return }
-        let fileReader = PSStreamFileReader(url: url)
+        let fileReader = PSFileHandleReader(url: url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
         items = []
         let deletedAll = dataStore.deleteAll()
