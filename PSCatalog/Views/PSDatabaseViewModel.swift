@@ -54,7 +54,6 @@ class PSDatabaseViewModel {
     // MARK: read with InputStream
     func inputStreamReadingAndParse(from url: URL?, _ totalLines: Int, completion: @escaping (Bool) -> Void) {
         guard let url = url else { return }
-        //let fileReader = PSStreamFileReader(url: url)
         let inputstream = PSInputStreamReader(url)
         var items = [PSProduct(productId: "", title: "", listPrice: 0, salesPrice: 0, color: "", size: "")]
         items = []

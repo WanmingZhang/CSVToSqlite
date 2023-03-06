@@ -17,16 +17,19 @@ class PSInputStreamReader {
     
     init(_ data: Data) {
         inputStream = InputStream(data: data)
+        inputStream?.open()
         buffer = Data(capacity: bufferSize)
     }
     
     init(_ url: URL) {
         inputStream = InputStream(url: url)
+        inputStream?.open()
         buffer = Data(capacity: bufferSize)
     }
     
     init(_ path: String) {
         inputStream = InputStream(fileAtPath: path)
+        inputStream?.open()
         buffer = Data(capacity: bufferSize)
     }
     
@@ -41,7 +44,6 @@ class PSInputStreamReader {
     }
     
     func readLine() -> String? {
-        inputStream?.open()
         var rangeOfDelimiter = buffer.range(of: delimiter)
         
         while rangeOfDelimiter == nil {

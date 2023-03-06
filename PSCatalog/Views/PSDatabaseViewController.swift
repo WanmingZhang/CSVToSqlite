@@ -36,7 +36,6 @@ class PSDatabaseViewController: UIViewController {
         setupBinder()
         configureButtons()
         getTotalNumOfLines()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,7 +105,7 @@ class PSDatabaseViewController: UIViewController {
 
     @IBAction func startLoadingDatabase(_ sender: Any) {
         let fileService = PSFileService()
-//        let deleteResult = fileService.deleteFile(from:Constants.DIR_CATALOG, withName: Constants.FILE_NAME)
+        //let deleteResult = fileService.deleteFile(from:Constants.DIR_CATALOG, withName: Constants.FILE_NAME)
         guard let url = fileService.getFileDestURL(directory: Constants.DIR_CATALOG, name: Constants.FILE_NAME) else {
             return
         }
@@ -115,9 +114,10 @@ class PSDatabaseViewController: UIViewController {
             presentDownloadFileAlert()
             return
         }
-        guard totalLines > 0 else {
-            return
-        }
+        //guard let url = URL(string: Constants.CATALOG_FILE_URL) else { return }
+        guard totalLines > 0 else { return }
+            
+        
         spinner.isHidden = false
         spinner.startAnimating()
         self.viewModel.inputStreamReadingAndParse(from: url, totalLines) { [weak self] completed in

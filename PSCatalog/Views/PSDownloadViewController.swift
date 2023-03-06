@@ -10,7 +10,6 @@ import Combine
 
 class PSDownloadViewController: UIViewController {
     
-    private var subscriptions: AnyCancellable?
     var downloadManager = PSDownloadManager.shared
 
     @IBOutlet weak var urlLabel: UILabel!
