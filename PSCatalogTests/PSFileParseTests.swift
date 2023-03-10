@@ -21,7 +21,7 @@ final class PSFileParseTests: XCTestCase {
 
     func testParseCSVByLine() throws {
         let testData = "99000026100002,XY Prep Short-WHT,24.99,24.99,White,MD"
-        let product = fileParser?.parseCSV(line: testData, encoding: .utf8)
+        let product = fileParser?.parse(by: testData, encoding: .utf8)
         XCTAssertEqual("99000026100002", product?.productId)
         XCTAssertEqual("XY Prep Short-WHT", product?.title)
         XCTAssertEqual(24.99, product?.listPrice)

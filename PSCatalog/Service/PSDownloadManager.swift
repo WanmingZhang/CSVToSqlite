@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import Combine
 
 /// PSDownloadManager is based on URLSession and URLSessionDownloadTask. It's a  an application wide singleton class and can be accessed by all parts of the app safely.
 /// For the scope of the project, it focuses on background download only, and will handle only one download task.
